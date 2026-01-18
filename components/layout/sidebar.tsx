@@ -28,6 +28,7 @@ import {
   UserPlus,
   ChevronDown,
   ChevronLeft,
+  X,
   LucideIcon,
 } from 'lucide-react';
 
@@ -60,9 +61,18 @@ const iconMap: Record<string, LucideIcon> = {
 export function Sidebar() {
   const pathname = usePathname();
   const user = useAuthStore((state) => state.user);
-  const { sidebarCollapsed, toggleSidebarCollapse } = useUIStore();
+  const { sidebarOpen, sidebarCollapsed, setSidebarOpen, toggleSidebarCollapse } = useUIStore();
   const navigationItems = useNavigation();
   const [expandedItems, setExpandedItems] = React.useState<string[]>([]);
+  const [isLgScreen, setIsLgScreen] = React.useState(true);
+
+  // Check screen size
+  React.useEffect(() => {
+    const checkScreen = () => setIsLgScreen(window.innerWidth >= 1024);
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+    return () => window.removeEventListener('resize', checkScreen);
+  }, []);
 
   const filteredNavItems = navigationItems.filter(
     (item) => user && item.roles.includes(user.role)
@@ -78,55 +88,90 @@ export function Sidebar() {
     return pathname === href || pathname?.startsWith(href + '/');
   };
 
+  // Close sidebar on route change for mobile
+  React.useEffect(() => {
+    if (!isLgScreen) {
+      setSidebarOpen(false);
+    }
+  }, [pathname, isLgScreen, setSidebarOpen]);
+
   return (
-    <aside
-      className={cn(
-        'fixed left-0 top-0 z-40 h-screen bg-white border-r border-gray-200',
-        'transition-all duration-300 ease-in-out',
-        sidebarCollapsed ? 'w-20' : 'w-64'
+    <>
+      {/* Mobile Overlay */}
+      {sidebarOpen && !isLgScreen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
-    >
-      {/* Logo */}
-      <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
-        {!sidebarCollapsed && (
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+
+      {/* Sidebar */}
+      <aside
+        className={cn(
+          'fixed left-0 top-0 z-50 h-screen bg-white border-r border-gray-200',
+          'transition-all duration-300 ease-in-out',
+          // Mobile: slide in/out
+          'lg:translate-x-0',
+          !isLgScreen && (sidebarOpen ? 'translate-x-0' : '-translate-x-full'),
+          // Desktop: collapse/expand
+          isLgScreen && (sidebarCollapsed ? 'w-20' : 'w-64'),
+          // Mobile always full width sidebar
+          !isLgScreen && 'w-72'
+        )}
+      >
+        {/* Logo */}
+        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
+          {!(sidebarCollapsed && isLgScreen) && (
+            <Link href="/dashboard" className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-linear-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                <School className="w-5 h-5 text-white" />
+              </div>
+              <span className="font-bold text-gray-900 text-sm">School Management</span>
+            </Link>
+          )}
+          {sidebarCollapsed && isLgScreen && (
+            <div className="w-8 h-8 bg-linear-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto">
               <School className="w-5 h-5 text-white" />
             </div>
-            <span className="font-bold text-gray-900 text-sm">School Management</span>
-          </Link>
-        )}
-        {sidebarCollapsed && (
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto">
-            <School className="w-5 h-5 text-white" />
-          </div>
-        )}
-        <button
-          onClick={toggleSidebarCollapse}
-          className={cn(
-            'p-1.5 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors',
-            sidebarCollapsed && 'hidden'
           )}
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-      </div>
+          
+          {/* Close button for mobile */}
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors lg:hidden"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          
+          {/* Collapse button for desktop */}
+          <button
+            onClick={toggleSidebarCollapse}
+            className={cn(
+              'p-1.5 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors hidden lg:block',
+              sidebarCollapsed && 'lg:hidden'
+            )}
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+        </div>
 
-      {/* Navigation */}
-      <nav className="p-3 space-y-1 overflow-y-auto h-[calc(100vh-64px)]">
-        {filteredNavItems.map((item) => (
-          <SidebarItem
-            key={item.href}
-            item={item}
-            isActive={isActiveLink(item.href)}
-            isExpanded={expandedItems.includes(item.href)}
-            onToggleExpand={() => toggleExpand(item.href)}
-            isCollapsed={sidebarCollapsed}
-            pathname={pathname}
-          />
-        ))}
-      </nav>
-    </aside>
+        {/* Navigation */}
+        <nav className="p-3 space-y-1 overflow-y-auto h-[calc(100vh-64px)]">
+          {filteredNavItems.map((item) => (
+            <SidebarItem
+              key={item.href}
+              item={item}
+              isActive={isActiveLink(item.href)}
+              isExpanded={expandedItems.includes(item.href)}
+              onToggleExpand={() => toggleExpand(item.href)}
+              isCollapsed={sidebarCollapsed && isLgScreen}
+              pathname={pathname}
+              onItemClick={() => !isLgScreen && setSidebarOpen(false)}
+            />
+          ))}
+        </nav>
+      </aside>
+    </>
   );
 }
 
@@ -141,6 +186,7 @@ interface SidebarItemProps {
   onToggleExpand: () => void;
   isCollapsed: boolean;
   pathname: string | null;
+  onItemClick?: () => void;
 }
 
 function SidebarItem({
@@ -150,9 +196,18 @@ function SidebarItem({
   onToggleExpand,
   isCollapsed,
   pathname,
+  onItemClick,
 }: SidebarItemProps) {
   const Icon = iconMap[item.icon];
   const hasChildren = item.children && item.children.length > 0;
+
+  const handleClick = () => {
+    if (hasChildren) {
+      onToggleExpand();
+    } else {
+      onItemClick?.();
+    }
+  };
 
   const content = (
     <div
@@ -164,9 +219,9 @@ function SidebarItem({
           : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
         isCollapsed && 'justify-center px-2'
       )}
-      onClick={hasChildren ? onToggleExpand : undefined}
+      onClick={handleClick}
     >
-      {Icon && <Icon className={cn('w-5 h-5 flex-shrink-0', isActive && 'text-blue-600')} />}
+      {Icon && <Icon className={cn('w-5 h-5 shrink-0', isActive && 'text-blue-600')} />}
       {!isCollapsed && (
         <>
           <span className="flex-1 text-sm font-medium">{item.title}</span>
@@ -198,7 +253,7 @@ function SidebarItem({
             const ChildIcon = iconMap[child.icon];
             const isChildActive = pathname === child.href;
             return (
-              <Link key={child.href} href={child.href}>
+              <Link key={child.href} href={child.href} onClick={onItemClick}>
                 <div
                   className={cn(
                     'flex items-center gap-3 px-3 py-2 rounded-lg text-sm',
@@ -208,7 +263,7 @@ function SidebarItem({
                       : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                   )}
                 >
-                  {ChildIcon && <ChildIcon className="w-4 h-4 flex-shrink-0" />}
+                  {ChildIcon && <ChildIcon className="w-4 h-4 shrink-0" />}
                   <span>{child.title}</span>
                 </div>
               </Link>

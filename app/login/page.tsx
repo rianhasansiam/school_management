@@ -50,25 +50,25 @@ export default function LoginPage() {
   return (
     <AuthLayout>
       <Card variant="elevated" className="overflow-hidden">
-        <CardContent className="p-8">
+        <CardContent className="p-4 sm:p-6 md:p-8">
           {/* Logo and Title */}
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <School className="w-8 h-8 text-white" />
+          <div className="text-center mb-6 md:mb-8">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+              <School className="w-6 h-6 md:w-8 md:h-8 text-white" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">School Management System</h1>
-            <p className="text-gray-500 mt-2">Sign in to your account</p>
+            <h1 className="text-xl md:text-2xl font-bold text-gray-900">School Management System</h1>
+            <p className="text-gray-500 mt-1 md:mt-2 text-sm md:text-base">Sign in to your account</p>
           </div>
 
           {/* Error Alert */}
           {error && (
-            <Alert type="error" className="mb-6">
+            <Alert type="error" className="mb-4 md:mb-6">
               {error}
             </Alert>
           )}
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
             <Input
               label="Email"
               type="email"

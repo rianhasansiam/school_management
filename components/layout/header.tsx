@@ -14,6 +14,7 @@ import {
   LogOut,
   Moon,
   Sun,
+  X,
 } from 'lucide-react';
 
 // ============================================
@@ -24,8 +25,9 @@ export function Header() {
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
-  const { sidebarCollapsed, toggleSidebarCollapse, theme, setTheme } = useUIStore();
+  const { sidebarCollapsed, setSidebarOpen, theme, setTheme } = useUIStore();
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [showMobileSearch, setShowMobileSearch] = React.useState(false);
 
   const handleLogout = () => {
     logout();
@@ -36,6 +38,7 @@ export function Header() {
     e.preventDefault();
     // Implement search functionality
     console.log('Search:', searchQuery);
+    setShowMobileSearch(false);
   };
 
   return (
@@ -43,20 +46,25 @@ export function Header() {
       className={cn(
         'fixed top-0 right-0 z-30 h-16 bg-white border-b border-gray-200',
         'transition-all duration-300 ease-in-out',
-        sidebarCollapsed ? 'left-20' : 'left-64'
+        // Desktop positioning based on sidebar
+        'lg:left-64',
+        sidebarCollapsed && 'lg:left-20',
+        // Mobile: full width
+        'left-0'
       )}
     >
-      <div className="flex items-center justify-between h-full px-6">
+      <div className="flex items-center justify-between h-full px-4 lg:px-6">
         {/* Left Section */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 lg:gap-4">
+          {/* Mobile menu button */}
           <button
-            onClick={toggleSidebarCollapse}
+            onClick={() => setSidebarOpen(true)}
             className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors lg:hidden"
           >
             <Menu className="w-5 h-5" />
           </button>
 
-          {/* Search */}
+          {/* Search - Desktop */}
           <form onSubmit={handleSearch} className="hidden md:block">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -66,7 +74,7 @@ export function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={cn(
-                  'w-80 pl-10 pr-4 py-2 rounded-lg',
+                  'w-64 lg:w-80 pl-10 pr-4 py-2 rounded-lg',
                   'bg-gray-50 border border-gray-200',
                   'text-sm text-gray-900 placeholder-gray-400',
                   'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
@@ -75,10 +83,18 @@ export function Header() {
               />
             </div>
           </form>
+
+          {/* Search button - Mobile */}
+          <button
+            onClick={() => setShowMobileSearch(true)}
+            className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 transition-colors md:hidden"
+          >
+            <Search className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 sm:gap-3">
           {/* Theme Toggle */}
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -97,14 +113,14 @@ export function Header() {
           {/* User Menu */}
           <DropdownMenu
             trigger={
-              <button className="flex items-center gap-3 p-1.5 rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="flex items-center gap-2 sm:gap-3 p-1.5 rounded-lg hover:bg-gray-50 transition-colors">
                 <Avatar
                   src={user?.avatar}
                   alt={`${user?.firstName} ${user?.lastName}`}
                   size="sm"
                 />
-                <div className="hidden md:block text-left">
-                  <p className="text-sm font-medium text-gray-900">
+                <div className="hidden sm:block text-left">
+                  <p className="text-sm font-medium text-gray-900 truncate max-w-[120px]">
                     {user?.firstName} {user?.lastName}
                   </p>
                   <p className="text-xs text-gray-500">
@@ -128,6 +144,38 @@ export function Header() {
           </DropdownMenu>
         </div>
       </div>
+
+      {/* Mobile Search Modal */}
+      {showMobileSearch && (
+        <div className="fixed inset-0 z-50 bg-white md:hidden">
+          <div className="flex items-center gap-2 p-4 border-b">
+            <form onSubmit={handleSearch} className="flex-1">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
+                  className={cn(
+                    'w-full pl-10 pr-4 py-2 rounded-lg',
+                    'bg-gray-50 border border-gray-200',
+                    'text-sm text-gray-900 placeholder-gray-400',
+                    'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                  )}
+                />
+              </div>
+            </form>
+            <button
+              onClick={() => setShowMobileSearch(false)}
+              className="p-2 rounded-lg hover:bg-gray-100 text-gray-500"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

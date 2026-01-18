@@ -113,9 +113,9 @@ export default function StudentsPage() {
       />
 
       <Card>
-        <CardContent className="p-6">
+        <CardContent className="p-3 md:p-6">
           {/* Filters */}
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
+          <div className="flex flex-col gap-3 md:flex-row md:gap-4 mb-4 md:mb-6">
             <div className="flex-1">
               <Input
                 placeholder="Search..."
@@ -132,14 +132,16 @@ export default function StudentsPage() {
                 placeholder="Select Class"
               />
             </div>
-            <Button variant="outline">
-              <Filter className="w-4 h-4 mr-2" />
-              Filter
-            </Button>
-            <Button variant="outline">
-              <Download className="w-4 h-4 mr-2" />
-              Export
-            </Button>
+            <div className="flex gap-2">
+              <Button variant="outline" className="flex-1 md:flex-none">
+                <Filter className="w-4 h-4 md:mr-2" />
+                <span className="hidden md:inline">Filter</span>
+              </Button>
+              <Button variant="outline" className="flex-1 md:flex-none">
+                <Download className="w-4 h-4 md:mr-2" />
+                <span className="hidden md:inline">Export</span>
+              </Button>
+            </div>
           </div>
 
           {/* Table */}
@@ -149,13 +151,13 @@ export default function StudentsPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Student</TableHead>
-                    <TableHead>ID</TableHead>
+                    <TableHead className="hidden sm:table-cell">ID</TableHead>
                     <TableHead>Class</TableHead>
-                    <TableHead>Roll</TableHead>
-                    <TableHead>Guardian</TableHead>
-                    <TableHead>Phone</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="w-12"></TableHead>
+                    <TableHead className="hidden md:table-cell">Roll</TableHead>
+                    <TableHead className="hidden lg:table-cell">Guardian</TableHead>
+                    <TableHead className="hidden lg:table-cell">Phone</TableHead>
+                    <TableHead className="hidden sm:table-cell">Status</TableHead>
+                    <TableHead className="w-10 md:w-12"></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -164,27 +166,27 @@ export default function StudentsPage() {
                     return (
                       <TableRow key={student.id}>
                         <TableCell>
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2 md:gap-3">
                             <Avatar
                               alt={`${student.firstName} ${student.lastName}`}
                               size="sm"
                             />
-                            <div>
-                              <p className="font-medium text-gray-900">
+                            <div className="min-w-0">
+                              <p className="font-medium text-gray-900 truncate text-xs md:text-sm">
                                 {student.firstName} {student.lastName}
                               </p>
-                              <p className="text-xs text-gray-500">
-                                Admission: {formatDate(student.admissionDate)}
+                              <p className="text-[10px] md:text-xs text-gray-500 truncate">
+                                Adm: {formatDate(student.admissionDate)}
                               </p>
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell className="font-mono text-sm">
+                        <TableCell className="font-mono text-xs md:text-sm hidden sm:table-cell">
                           {student.studentId}
                         </TableCell>
-                        <TableCell>{classInfo?.name}</TableCell>
-                        <TableCell>{student.rollNumber}</TableCell>
-                        <TableCell>
+                        <TableCell className="text-xs md:text-sm">{classInfo?.name}</TableCell>
+                        <TableCell className="hidden md:table-cell">{student.rollNumber}</TableCell>
+                        <TableCell className="hidden lg:table-cell">
                           <div>
                             <p className="text-sm">{student.guardianName}</p>
                             <p className="text-xs text-gray-500">
@@ -192,8 +194,8 @@ export default function StudentsPage() {
                             </p>
                           </div>
                         </TableCell>
-                        <TableCell className="text-sm">{student.guardianPhone}</TableCell>
-                        <TableCell>
+                        <TableCell className="text-sm hidden lg:table-cell">{student.guardianPhone}</TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge variant={student.isActive ? 'success' : 'danger'}>
                             {student.isActive ? 'Active' : 'Inactive'}
                           </Badge>

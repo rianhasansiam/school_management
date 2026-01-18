@@ -83,75 +83,75 @@ export function AdminDashboard() {
   const stats = DEMO_DASHBOARD_STATS;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
         <StatCard
           title="Total Students"
           value={stats.totalStudents.toLocaleString('en-US')}
-          icon={<Users className="w-6 h-6 text-blue-600" />}
+          icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />}
           iconBgColor="bg-blue-100"
           change={{ value: 12, type: 'increase' }}
         />
         <StatCard
           title="Total Teachers"
           value={stats.totalTeachers.toLocaleString('en-US')}
-          icon={<GraduationCap className="w-6 h-6 text-green-600" />}
+          icon={<GraduationCap className="w-5 h-5 md:w-6 md:h-6 text-green-600" />}
           iconBgColor="bg-green-100"
           change={{ value: 5, type: 'increase' }}
         />
         <StatCard
           title="Total Income (This Month)"
           value={formatCurrency(stats.totalIncome)}
-          icon={<TrendingUp className="w-6 h-6 text-emerald-600" />}
+          icon={<TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-emerald-600" />}
           iconBgColor="bg-emerald-100"
           change={{ value: 8, type: 'increase' }}
         />
         <StatCard
           title="Total Expenses (This Month)"
           value={formatCurrency(stats.totalExpense)}
-          icon={<TrendingDown className="w-6 h-6 text-red-600" />}
+          icon={<TrendingDown className="w-5 h-5 md:w-6 md:h-6 text-red-600" />}
           iconBgColor="bg-red-100"
           change={{ value: 3, type: 'decrease' }}
         />
       </div>
 
       {/* Secondary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6">
         <StatCard
           title="Average Attendance Rate"
           value={`${stats.attendanceRate}%`}
-          icon={<ClipboardCheck className="w-6 h-6 text-purple-600" />}
+          icon={<ClipboardCheck className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />}
           iconBgColor="bg-purple-100"
         />
         <StatCard
           title="Pending Fees"
           value={formatCurrency(stats.pendingFees)}
-          icon={<DollarSign className="w-6 h-6 text-orange-600" />}
+          icon={<DollarSign className="w-5 h-5 md:w-6 md:h-6 text-orange-600" />}
           iconBgColor="bg-orange-100"
         />
         <StatCard
           title="Total Classes"
           value={stats.totalClasses.toLocaleString('en-US')}
-          icon={<School className="w-6 h-6 text-indigo-600" />}
+          icon={<School className="w-5 h-5 md:w-6 md:h-6 text-indigo-600" />}
           iconBgColor="bg-indigo-100"
         />
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Revenue Chart */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-emerald-600" />
+            <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+              <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-emerald-600" />
               Income vs Expenses
             </CardTitle>
           </CardHeader>
           <CardContent>
             <SimpleLineChart
               data={monthlyRevenueData}
-              height={280}
+              height={250}
               color={CHART_COLORS.success}
               color2={CHART_COLORS.danger}
               showLegend={true}
@@ -164,15 +164,15 @@ export function AdminDashboard() {
         {/* Student Enrollment Chart */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Users className="w-5 h-5 text-blue-600" />
+            <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+              <Users className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
               Student Enrollment Trend
             </CardTitle>
           </CardHeader>
           <CardContent>
             <SimpleLineChart
               data={studentEnrollmentData}
-              height={280}
+              height={250}
               color={CHART_COLORS.primary}
             />
           </CardContent>
@@ -180,19 +180,19 @@ export function AdminDashboard() {
       </div>
 
       {/* Second Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         {/* Attendance by Class */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <ClipboardCheck className="w-5 h-5 text-purple-600" />
+            <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+              <ClipboardCheck className="w-4 h-4 md:w-5 md:h-5 text-purple-600" />
               Attendance Rate by Class
             </CardTitle>
           </CardHeader>
           <CardContent>
             <SimpleBarChart
               data={attendanceByClassData}
-              height={250}
+              height={220}
               color={CHART_COLORS.secondary}
             />
           </CardContent>
@@ -201,15 +201,15 @@ export function AdminDashboard() {
         {/* Fee Collection Status */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-orange-600" />
+            <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+              <DollarSign className="w-4 h-4 md:w-5 md:h-5 text-orange-600" />
               Fee Collection Status
             </CardTitle>
           </CardHeader>
           <CardContent>
             <DonutChart
               data={feeCollectionStatusData}
-              height={250}
+              height={220}
               centerValue="378"
               centerLabel="Total"
             />
@@ -218,7 +218,7 @@ export function AdminDashboard() {
       </div>
 
       {/* Tables Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Recent Transactions */}
         <Card>
           <CardHeader
@@ -237,7 +237,7 @@ export function AdminDashboard() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Description</TableHead>
-                  <TableHead>Date</TableHead>
+                  <TableHead className="hidden sm:table-cell">Date</TableHead>
                   <TableHead className="text-right">Amount</TableHead>
                 </TableRow>
               </TableHeader>
@@ -245,25 +245,25 @@ export function AdminDashboard() {
                 {DEMO_TRANSACTIONS.slice(0, 5).map((transaction) => (
                   <TableRow key={transaction.id}>
                     <TableCell>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 md:gap-3">
                         <div
                           className={cn(
-                            'w-8 h-8 rounded-full flex items-center justify-center',
+                            'w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center shrink-0',
                             transaction.type === 'income'
                               ? 'bg-green-100'
                               : 'bg-red-100'
                           )}
                         >
                           {transaction.type === 'income' ? (
-                            <TrendingUp className="w-4 h-4 text-green-600" />
+                            <TrendingUp className="w-3 h-3 md:w-4 md:h-4 text-green-600" />
                           ) : (
-                            <TrendingDown className="w-4 h-4 text-red-600" />
+                            <TrendingDown className="w-3 h-3 md:w-4 md:h-4 text-red-600" />
                           )}
                         </div>
-                        <span className="text-sm">{transaction.description}</span>
+                        <span className="text-xs md:text-sm truncate max-w-[100px] md:max-w-none">{transaction.description}</span>
                       </div>
                     </TableCell>
-                    <TableCell className="text-sm text-gray-500">
+                    <TableCell className="text-xs md:text-sm text-gray-500 hidden sm:table-cell">
                       {formatDate(transaction.date)}
                     </TableCell>
                     <TableCell
@@ -293,11 +293,11 @@ export function AdminDashboard() {
             <div className="space-y-4">
               {stats.recentActivities.map((activity) => (
                 <div key={activity.id} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
                     <ActivityIcon type={activity.type} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-gray-900">{activity.description}</p>
+                    <p className="text-xs md:text-sm text-gray-900">{activity.description}</p>
                     <p className="text-xs text-gray-500 mt-1">
                       {activity.userName} • {formatDate(activity.timestamp, 'dd MMM, hh:mm a')}
                     </p>
@@ -310,7 +310,7 @@ export function AdminDashboard() {
       </div>
 
       {/* Students & Teachers */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Recent Students */}
         <Card>
           <CardHeader

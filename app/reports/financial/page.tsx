@@ -136,34 +136,30 @@ export default function FinancialReportPage() {
         <StatCard
           title="Total Revenue"
           value={formatCurrency(totalIncome)}
-          icon={<TrendingUp className="w-5 h-5" />}
-          trend={{ value: 12.5, isPositive: true }}
-          description="This fiscal year"
-          color="green"
+          icon={<TrendingUp className="w-5 h-5 text-green-600" />}
+          iconBgColor="bg-green-100"
+          change={{ value: 12.5, type: 'increase' }}
         />
         <StatCard
           title="Total Expenses"
           value={formatCurrency(totalExpense)}
-          icon={<TrendingDown className="w-5 h-5" />}
-          trend={{ value: 8.3, isPositive: false }}
-          description="This fiscal year"
-          color="red"
+          icon={<TrendingDown className="w-5 h-5 text-red-600" />}
+          iconBgColor="bg-red-100"
+          change={{ value: 8.3, type: 'decrease' }}
         />
         <StatCard
           title="Net Profit"
           value={formatCurrency(netProfit)}
-          icon={<Wallet className="w-5 h-5" />}
-          trend={{ value: parseFloat(profitMargin), isPositive: netProfit > 0 }}
-          description={`${profitMargin}% margin`}
-          color="blue"
+          icon={<Wallet className="w-5 h-5 text-blue-600" />}
+          iconBgColor="bg-blue-100"
+          change={{ value: parseFloat(profitMargin), type: netProfit > 0 ? 'increase' : 'decrease' }}
         />
         <StatCard
           title="Fee Collection"
           value={formatCurrency(totalFeeCollected)}
-          icon={<CreditCard className="w-5 h-5" />}
-          trend={{ value: parseFloat(feeCollectionRate), isPositive: true }}
-          description={`${feeCollectionRate}% collected`}
-          color="purple"
+          icon={<CreditCard className="w-5 h-5 text-purple-600" />}
+          iconBgColor="bg-purple-100"
+          change={{ value: parseFloat(feeCollectionRate), type: 'increase' }}
         />
       </div>
 
@@ -206,7 +202,7 @@ export default function FinancialReportPage() {
       </Card>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+      <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="mb-6">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="income">Income Analysis</TabsTrigger>
@@ -575,7 +571,7 @@ export default function FinancialReportPage() {
                         <p className="text-sm font-medium text-center">{formatCurrency(item.prev)}</p>
                         <div className="text-center">
                           <p className="text-sm font-medium">{formatCurrency(item.curr)}</p>
-                          <Badge variant={change >= 0 ? 'success' : 'destructive'} className="text-xs mt-1">
+                          <Badge variant={change >= 0 ? 'success' : 'danger'} className="text-xs mt-1">
                             {change >= 0 ? <ArrowUpRight className="w-3 h-3 inline" /> : <ArrowDownRight className="w-3 h-3 inline" />}
                             {Math.abs(change).toFixed(1)}%
                           </Badge>
@@ -684,7 +680,7 @@ export default function FinancialReportPage() {
                       </TableCell>
                       <TableCell>{transaction.category}</TableCell>
                       <TableCell>
-                        <Badge variant={transaction.type === TransactionType.INCOME ? 'success' : 'destructive'}>
+                        <Badge variant={transaction.type === TransactionType.INCOME ? 'success' : 'danger'}>
                           {transaction.type === TransactionType.INCOME ? (
                             <ArrowUpRight className="w-3 h-3 mr-1" />
                           ) : (
@@ -703,7 +699,7 @@ export default function FinancialReportPage() {
                       <TableCell>
                         <Badge variant={
                           transaction.status === PaymentStatus.COMPLETED ? 'success' :
-                          transaction.status === PaymentStatus.PENDING ? 'warning' : 'destructive'
+                          transaction.status === PaymentStatus.PENDING ? 'warning' : 'danger'
                         }>
                           {transaction.status}
                         </Badge>

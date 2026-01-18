@@ -72,57 +72,57 @@ export default function FinancePage() {
           { label: 'Finance' },
         ]}
         actions={
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={() => setIsAddExpenseOpen(true)}>
-              <TrendingDown className="w-4 h-4 mr-2 text-red-600" />
-              Add Expense
+          <div className="flex gap-2 flex-wrap">
+            <Button variant="outline" size="sm" onClick={() => setIsAddExpenseOpen(true)}>
+              <TrendingDown className="w-4 h-4 md:mr-2 text-red-600" />
+              <span className="hidden sm:inline">Add Expense</span>
             </Button>
-            <Button onClick={() => setIsAddIncomeOpen(true)}>
-              <TrendingUp className="w-4 h-4 mr-2" />
-              Add Income
+            <Button size="sm" onClick={() => setIsAddIncomeOpen(true)}>
+              <TrendingUp className="w-4 h-4 md:mr-2" />
+              <span className="hidden sm:inline">Add Income</span>
             </Button>
           </div>
         }
       />
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-4 md:mb-6">
         <StatCard
           title="Total Income (This Month)"
           value={formatCurrency(totalIncome)}
-          icon={<TrendingUp className="w-6 h-6 text-green-600" />}
+          icon={<TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-green-600" />}
           iconBgColor="bg-green-100"
           change={{ value: 12, type: 'increase' }}
         />
         <StatCard
           title="Total Expenses (This Month)"
           value={formatCurrency(totalExpense)}
-          icon={<TrendingDown className="w-6 h-6 text-red-600" />}
+          icon={<TrendingDown className="w-5 h-5 md:w-6 md:h-6 text-red-600" />}
           iconBgColor="bg-red-100"
           change={{ value: 5, type: 'decrease' }}
         />
         <StatCard
           title="Pending Fees"
           value={formatCurrency(pendingFees)}
-          icon={<Receipt className="w-6 h-6 text-orange-600" />}
+          icon={<Receipt className="w-5 h-5 md:w-6 md:h-6 text-orange-600" />}
           iconBgColor="bg-orange-100"
         />
         <StatCard
           title="Paid Salaries"
           value={formatCurrency(paidSalaries)}
-          icon={<Banknote className="w-6 h-6 text-blue-600" />}
+          icon={<Banknote className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />}
           iconBgColor="bg-blue-100"
         />
       </div>
 
       {/* Tabs */}
       <Card>
-        <CardContent className="p-6">
+        <CardContent className="p-3 md:p-6">
           <Tabs defaultValue="transactions">
-            <TabsList>
-              <TabsTrigger value="transactions">Transactions</TabsTrigger>
-              <TabsTrigger value="fees">Fee Collection</TabsTrigger>
-              <TabsTrigger value="salary">Salary</TabsTrigger>
+            <TabsList className="flex-wrap">
+              <TabsTrigger value="transactions" className="text-xs md:text-sm">Transactions</TabsTrigger>
+              <TabsTrigger value="fees" className="text-xs md:text-sm">Fee Collection</TabsTrigger>
+              <TabsTrigger value="salary" className="text-xs md:text-sm">Salary</TabsTrigger>
             </TabsList>
 
             {/* Transactions Tab */}

@@ -90,14 +90,14 @@ export default function ClassesPage() {
       />
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4 md:mb-6">
         <Card className="bg-blue-50 border-blue-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <BookOpen className="w-8 h-8 text-blue-600" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-blue-600" />
               <div>
-                <p className="text-sm text-blue-600">Total Classes</p>
-                <p className="text-2xl font-bold text-blue-800">
+                <p className="text-xs md:text-sm text-blue-600">Total Classes</p>
+                <p className="text-lg md:text-2xl font-bold text-blue-800">
                   {DEMO_CLASSES.length}
                 </p>
               </div>
@@ -105,12 +105,12 @@ export default function ClassesPage() {
           </CardContent>
         </Card>
         <Card className="bg-green-50 border-green-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <Users className="w-8 h-8 text-green-600" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <Users className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
               <div>
-                <p className="text-sm text-green-600">Total Students</p>
-                <p className="text-2xl font-bold text-green-800">
+                <p className="text-xs md:text-sm text-green-600">Total Students</p>
+                <p className="text-lg md:text-2xl font-bold text-green-800">
                   {DEMO_STUDENTS.length}
                 </p>
               </div>
@@ -118,12 +118,12 @@ export default function ClassesPage() {
           </CardContent>
         </Card>
         <Card className="bg-purple-50 border-purple-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <GraduationCap className="w-8 h-8 text-purple-600" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <GraduationCap className="w-6 h-6 md:w-8 md:h-8 text-purple-600" />
               <div>
-                <p className="text-sm text-purple-600">Total Teachers</p>
-                <p className="text-2xl font-bold text-purple-800">
+                <p className="text-xs md:text-sm text-purple-600">Total Teachers</p>
+                <p className="text-lg md:text-2xl font-bold text-purple-800">
                   {DEMO_TEACHERS.length}
                 </p>
               </div>
@@ -131,12 +131,12 @@ export default function ClassesPage() {
           </CardContent>
         </Card>
         <Card className="bg-orange-50 border-orange-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <UserCheck className="w-8 h-8 text-orange-600" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <UserCheck className="w-6 h-6 md:w-8 md:h-8 text-orange-600" />
               <div>
-                <p className="text-sm text-orange-600">Avg Students/Class</p>
-                <p className="text-2xl font-bold text-orange-800">
+                <p className="text-xs md:text-sm text-orange-600">Avg/Class</p>
+                <p className="text-lg md:text-2xl font-bold text-orange-800">
                   {Math.round(DEMO_STUDENTS.length / DEMO_CLASSES.length)}
                 </p>
               </div>
@@ -147,7 +147,7 @@ export default function ClassesPage() {
 
       <Card>
         <CardHeader>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 md:gap-4">
             <CardTitle>Class List</CardTitle>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -183,12 +183,12 @@ export default function ClassesPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Class</TableHead>
-                    <TableHead>Section</TableHead>
-                    <TableHead>Class Teacher</TableHead>
-                    <TableHead className="text-center">Student Count</TableHead>
-                    <TableHead className="text-center">Max Capacity</TableHead>
-                    <TableHead>Academic Year</TableHead>
-                    <TableHead>Status</TableHead>
+                    <TableHead className="hidden sm:table-cell">Section</TableHead>
+                    <TableHead className="hidden md:table-cell">Class Teacher</TableHead>
+                    <TableHead className="text-center">Students</TableHead>
+                    <TableHead className="text-center hidden lg:table-cell">Capacity</TableHead>
+                    <TableHead className="hidden lg:table-cell">Year</TableHead>
+                    <TableHead className="hidden sm:table-cell">Status</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -203,44 +203,44 @@ export default function ClassesPage() {
                     return (
                       <TableRow key={cls.id}>
                         <TableCell>
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-primary-100 flex items-center justify-center">
-                              <BookOpen className="w-5 h-5 text-primary-600" />
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary-100 flex items-center justify-center shrink-0">
+                              <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-primary-600" />
                             </div>
-                            <span className="font-medium">{cls.name}</span>
+                            <span className="font-medium text-xs md:text-sm">{cls.name}</span>
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge variant="default">{cls.section}</Badge>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="hidden md:table-cell">
                           {classTeacher ? (
-                            <span>
+                            <span className="text-xs md:text-sm truncate">
                               {classTeacher.firstName} {classTeacher.lastName}
                             </span>
                           ) : (
-                            <span className="text-gray-400">Not Assigned</span>
+                            <span className="text-gray-400 text-xs md:text-sm">Not Assigned</span>
                           )}
                         </TableCell>
                         <TableCell className="text-center">
                           <span
                             className={cn(
-                              'font-medium',
+                              'font-medium text-xs md:text-sm',
                               isFull ? 'text-red-600' : 'text-green-600'
                             )}
                           >
                             {studentCount}
                           </span>
                         </TableCell>
-                        <TableCell className="text-center">{cls.capacity}</TableCell>
-                        <TableCell>{cls.academicYear}</TableCell>
-                        <TableCell>
+                        <TableCell className="text-center hidden lg:table-cell">{cls.capacity}</TableCell>
+                        <TableCell className="hidden lg:table-cell text-xs md:text-sm">{cls.academicYear}</TableCell>
+                        <TableCell className="hidden sm:table-cell">
                           <Badge variant={cls.isActive ? 'success' : 'danger'}>
                             {cls.isActive ? 'Active' : 'Inactive'}
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <div className="flex justify-end gap-2">
+                          <div className="flex justify-end gap-1 md:gap-2">
                             <Button
                               variant="ghost"
                               size="sm"

@@ -84,9 +84,9 @@ export default function TeachersPage() {
       />
 
       <Card>
-        <CardContent className="p-6">
+        <CardContent className="p-3 md:p-6">
           {/* Filters */}
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-4 md:mb-6">
             <div className="flex-1">
               <Input
                 placeholder="Search by name, email or ID..."
@@ -96,8 +96,8 @@ export default function TeachersPage() {
               />
             </div>
             <Button variant="outline">
-              <Download className="w-4 h-4 mr-2" />
-              Export
+              <Download className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">Export</span>
             </Button>
           </div>
 
@@ -108,46 +108,46 @@ export default function TeachersPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Teacher</TableHead>
-                    <TableHead>ID</TableHead>
-                    <TableHead>Subject</TableHead>
-                    <TableHead>Contact</TableHead>
-                    <TableHead>Joining Date</TableHead>
-                    <TableHead>Salary</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="w-12"></TableHead>
+                    <TableHead className="hidden sm:table-cell">ID</TableHead>
+                    <TableHead className="hidden md:table-cell">Subject</TableHead>
+                    <TableHead className="hidden lg:table-cell">Contact</TableHead>
+                    <TableHead className="hidden lg:table-cell">Joining Date</TableHead>
+                    <TableHead className="hidden md:table-cell">Salary</TableHead>
+                    <TableHead className="hidden sm:table-cell">Status</TableHead>
+                    <TableHead className="w-10 md:w-12"></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {paginatedTeachers.map((teacher) => (
                     <TableRow key={teacher.id}>
                       <TableCell>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2 md:gap-3">
                           <Avatar
                             src={teacher.avatar}
                             alt={`${teacher.firstName} ${teacher.lastName}`}
                             size="sm"
                           />
-                          <div>
-                            <p className="font-medium text-gray-900">
+                          <div className="min-w-0">
+                            <p className="font-medium text-gray-900 truncate text-xs md:text-sm">
                               {teacher.firstName} {teacher.lastName}
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-[10px] md:text-xs text-gray-500 truncate">
                               {teacher.qualification}
                             </p>
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="font-mono text-sm">
+                      <TableCell className="font-mono text-xs md:text-sm hidden sm:table-cell">
                         {teacher.employeeId}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden md:table-cell">
                         <Badge variant="info">{teacher.specialization}</Badge>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden lg:table-cell">
                         <div className="space-y-1">
                           <p className="text-sm flex items-center gap-1">
                             <Mail className="w-3 h-3 text-gray-400" />
-                            {teacher.email}
+                            <span className="truncate max-w-[150px]">{teacher.email}</span>
                           </p>
                           <p className="text-sm flex items-center gap-1">
                             <Phone className="w-3 h-3 text-gray-400" />
@@ -155,13 +155,13 @@ export default function TeachersPage() {
                           </p>
                         </div>
                       </TableCell>
-                      <TableCell className="text-sm">
+                      <TableCell className="text-sm hidden lg:table-cell">
                         {formatDate(teacher.joiningDate)}
                       </TableCell>
-                      <TableCell className="font-medium">
+                      <TableCell className="font-medium hidden md:table-cell">
                         {formatCurrency(teacher.salary)}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden sm:table-cell">
                         <Badge variant={teacher.isActive ? 'success' : 'danger'}>
                           {teacher.isActive ? 'Active' : 'Inactive'}
                         </Badge>

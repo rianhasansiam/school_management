@@ -70,8 +70,8 @@ export function TableHead({ className, children, ...props }: React.ThHTMLAttribu
   return (
     <th
       className={cn(
-        'h-12 px-4 text-left align-middle font-semibold text-gray-600',
-        'bg-gray-50 [&:has([role=checkbox])]:pr-0',
+        'h-10 md:h-12 px-2 md:px-4 text-left align-middle font-semibold text-gray-600',
+        'bg-gray-50 [&:has([role=checkbox])]:pr-0 text-xs md:text-sm whitespace-nowrap',
         className
       )}
       {...props}
@@ -85,7 +85,7 @@ export function TableCell({ className, children, ...props }: React.TdHTMLAttribu
   return (
     <td
       className={cn(
-        'p-4 align-middle text-gray-700 [&:has([role=checkbox])]:pr-0',
+        'p-2 md:p-4 align-middle text-gray-700 [&:has([role=checkbox])]:pr-0 text-xs md:text-sm',
         className
       )}
       {...props}

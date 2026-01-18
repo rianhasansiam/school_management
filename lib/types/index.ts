@@ -27,6 +27,7 @@ export enum PaymentStatus {
   COMPLETED = 'completed',
   FAILED = 'failed',
   CANCELLED = 'cancelled',
+  OVERDUE = 'overdue',
 }
 
 export enum TransactionType {

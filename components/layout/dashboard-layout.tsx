@@ -58,10 +58,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <main
           className={cn(
             'pt-16 min-h-screen transition-all duration-300 ease-in-out',
-            sidebarCollapsed ? 'ml-20' : 'ml-64'
+            'ml-0',
+            sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'
           )}
         >
-          <div className="p-6">{children}</div>
+          <div className="p-4 md:p-6">{children}</div>
         </main>
       </div>
     </ToastProvider>
@@ -81,11 +82,11 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, actions, breadcrumbs }: PageHeaderProps) {
   return (
-    <div className="mb-6">
+    <div className="mb-4 md:mb-6">
       {/* Breadcrumbs */}
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <nav className="mb-2">
-          <ol className="flex items-center gap-2 text-sm">
+        <nav className="mb-2 overflow-x-auto">
+          <ol className="flex items-center gap-2 text-xs md:text-sm whitespace-nowrap">
             {breadcrumbs.map((crumb, index) => (
               <li key={index} className="flex items-center gap-2">
                 {index > 0 && <span className="text-gray-400">/</span>}
@@ -103,12 +104,12 @@ export function PageHeader({ title, description, actions, breadcrumbs }: PageHea
       )}
 
       {/* Title and Actions */}
-      <div className="flex items-start justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
-          {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900 truncate">{title}</h1>
+          {description && <p className="mt-1 text-xs md:text-sm text-gray-500">{description}</p>}
         </div>
-        {actions && <div className="flex items-center gap-3">{actions}</div>}
+        {actions && <div className="flex items-center gap-2 md:gap-3 flex-wrap shrink-0">{actions}</div>}
       </div>
     </div>
   );

@@ -107,48 +107,48 @@ export function TeacherDashboard() {
   const weeklyTeachingHours = mySubjects.length * 5; // Assuming 5 classes per subject per week
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Teacher Profile Card */}
-      <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <CardContent className="p-6">
-          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
+      <Card className="bg-linear-to-r from-blue-600 to-blue-700 text-white">
+        <CardContent className="p-4 md:p-6">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 items-start sm:items-center">
             <Avatar
               src={myTeacherProfile?.avatar || user?.avatar}
               alt={`${user?.firstName} ${user?.lastName}`}
               size="xl"
               className="border-4 border-white/20"
             />
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold">
+            <div className="flex-1 min-w-0">
+              <h2 className="text-xl md:text-2xl font-bold truncate">
                 {myTeacherProfile?.firstName || user?.firstName} {myTeacherProfile?.lastName || user?.lastName}
               </h2>
-              <p className="text-blue-100 mt-1">
+              <p className="text-blue-100 mt-1 text-sm md:text-base">
                 {myTeacherProfile?.specialization || 'Teacher'} • {myTeacherProfile?.qualification}
               </p>
-              <div className="flex flex-wrap gap-4 mt-4 text-sm text-blue-100">
+              <div className="flex flex-wrap gap-2 md:gap-4 mt-3 md:mt-4 text-xs md:text-sm text-blue-100">
                 <span className="flex items-center gap-1">
-                  <Briefcase className="w-4 h-4" />
+                  <Briefcase className="w-3 h-3 md:w-4 md:h-4" />
                   {myTeacherProfile?.employeeId || 'N/A'}
                 </span>
-                <span className="flex items-center gap-1">
-                  <Mail className="w-4 h-4" />
-                  {myTeacherProfile?.email || user?.email}
+                <span className="items-center gap-1 hidden sm:flex">
+                  <Mail className="w-3 h-3 md:w-4 md:h-4" />
+                  <span className="truncate max-w-37.5">{myTeacherProfile?.email || user?.email}</span>
                 </span>
                 <span className="flex items-center gap-1">
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-3 h-3 md:w-4 md:h-4" />
                   {myTeacherProfile?.phone || user?.phone}
                 </span>
-                <span className="flex items-center gap-1">
-                  <CalendarDays className="w-4 h-4" />
+                <span className="items-center gap-1 hidden md:flex">
+                  <CalendarDays className="w-3 h-3 md:w-4 md:h-4" />
                   Joined: {myTeacherProfile?.joiningDate ? formatDate(myTeacherProfile.joiningDate) : 'N/A'}
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-2 text-right">
+            <div className="flex flex-row sm:flex-col gap-2 text-left sm:text-right items-center sm:items-end">
               <Badge variant="success" className="bg-white/20 text-white border-0">
                 Active
               </Badge>
-              <p className="text-sm text-blue-100">
+              <p className="text-xs md:text-sm text-blue-100 hidden sm:block">
                 Last login: {user?.lastLogin ? formatDate(user.lastLogin) : 'N/A'}
               </p>
             </div>
@@ -157,40 +157,40 @@ export function TeacherDashboard() {
       </Card>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
         <StatCard
           title="My Classes"
           value={myClasses.length.toString()}
-          icon={<BookOpen className="w-6 h-6 text-blue-600" />}
+          icon={<BookOpen className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />}
           iconBgColor="bg-blue-100"
         />
         <StatCard
           title="My Students"
           value={myStudents.length.toString()}
-          icon={<Users className="w-6 h-6 text-green-600" />}
+          icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-green-600" />}
           iconBgColor="bg-green-100"
         />
         <StatCard
           title="My Assignments"
           value={myAssignments.length.toString()}
-          icon={<FileText className="w-6 h-6 text-purple-600" />}
+          icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-purple-600" />}
           iconBgColor="bg-purple-100"
         />
         <StatCard
           title="Weekly Hours"
           value={weeklyTeachingHours.toString()}
-          icon={<Clock className="w-6 h-6 text-orange-600" />}
+          icon={<Clock className="w-5 h-5 md:w-6 md:h-6 text-orange-600" />}
           iconBgColor="bg-orange-100"
         />
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Weekly Attendance Chart */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <BarChart3 className="w-5 h-5 text-blue-600" />
+            <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+              <BarChart3 className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
               Weekly Class Attendance
             </CardTitle>
           </CardHeader>
@@ -212,8 +212,8 @@ export function TeacherDashboard() {
         {/* Assignment Status Chart */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="w-5 h-5 text-purple-600" />
+            <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+              <FileText className="w-4 h-4 md:w-5 md:h-5 text-purple-600" />
               Assignment Status
             </CardTitle>
           </CardHeader>
@@ -224,7 +224,7 @@ export function TeacherDashboard() {
                 { name: 'Draft', value: myAssignments.filter(a => a.status === 'draft').length || 1, color: CHART_COLORS.warning },
                 { name: 'Closed', value: myAssignments.filter(a => a.status === 'closed').length || 1, color: CHART_COLORS.info },
               ]}
-              height={220}
+              height={200}
               centerValue={myAssignments.length || 4}
               centerLabel="Total"
             />
@@ -235,8 +235,8 @@ export function TeacherDashboard() {
       {/* Performance Chart */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <ClipboardCheck className="w-5 h-5 text-green-600" />
+          <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+            <ClipboardCheck className="w-4 h-4 md:w-5 md:h-5 text-green-600" />
             Monthly Teaching Performance
           </CardTitle>
         </CardHeader>
@@ -250,7 +250,7 @@ export function TeacherDashboard() {
               { name: 'Dec', value: 94, value2: 90 },
               { name: 'Jan', value: 96, value2: 92 },
             ]}
-            height={250}
+            height={220}
             color={CHART_COLORS.success}
             color2={CHART_COLORS.primary}
             showLegend={true}
@@ -261,19 +261,19 @@ export function TeacherDashboard() {
       </Card>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         {/* Left Column - 2 cols */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 md:space-y-6">
           {/* Today's Schedule */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sm md:text-base">
+                <Calendar className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
                 Today's Class Schedule
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 {mySubjects.length > 0 ? (
                   mySubjects.slice(0, 4).map((subject, index) => {
                     const classInfo = DEMO_CLASSES.find(c => c.id === subject.classId);
@@ -284,18 +284,18 @@ export function TeacherDashboard() {
                       <div
                         key={subject.id}
                         className={cn(
-                          'flex items-center gap-4 p-3 rounded-lg border',
+                          'flex items-center gap-2 md:gap-4 p-2 md:p-3 rounded-lg border',
                           statuses[index] === 'completed' && 'bg-green-50 border-green-200',
                           statuses[index] === 'ongoing' && 'bg-blue-50 border-blue-200',
                           statuses[index] === 'upcoming' && 'bg-gray-50 border-gray-200'
                         )}
                       >
-                        <div className="text-center min-w-[90px]">
-                          <p className="text-sm font-medium text-gray-900">{times[index]}</p>
+                        <div className="text-center min-w-17.5 md:min-w-22.5">
+                          <p className="text-xs md:text-sm font-medium text-gray-900">{times[index]}</p>
                         </div>
-                        <div className="flex-1">
-                          <p className="font-medium text-gray-900">{classInfo?.name || 'Unknown'}</p>
-                          <p className="text-sm text-gray-500">{subject.name}</p>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-gray-900 text-sm md:text-base truncate">{classInfo?.name || 'Unknown'}</p>
+                          <p className="text-xs md:text-sm text-gray-500 truncate">{subject.name}</p>
                         </div>
                         <Badge 
                           variant={
@@ -499,7 +499,7 @@ export function TeacherDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg">
+                <div className="p-4 bg-linear-to-r from-green-50 to-emerald-50 rounded-lg">
                   <p className="text-sm text-gray-600">Monthly Salary</p>
                   <p className="text-2xl font-bold text-green-700">
                     {formatCurrency(myTeacherProfile?.salary || 0)}

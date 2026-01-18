@@ -158,7 +158,7 @@ export default function FeeReportPage() {
           value={formatCurrency(collectedFees)}
           icon={<CheckCircle className="w-6 h-6 text-green-600" />}
           iconBgColor="bg-green-100"
-          change={{ value: collectionRate.toFixed(1), type: 'increase' }}
+          change={{ value: parseFloat(collectionRate.toFixed(1)), type: 'increase' }}
         />
         <StatCard
           title="Pending"

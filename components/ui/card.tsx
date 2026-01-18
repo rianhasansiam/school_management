@@ -38,7 +38,7 @@ export function CardHeader({ className, children, action, ...props }: CardHeader
   return (
     <div
       className={cn(
-        'flex items-center justify-between px-6 py-4 border-b border-gray-100',
+        'flex items-center justify-between px-4 py-3 md:px-6 md:py-4 border-b border-gray-100',
         className
       )}
       {...props}
@@ -52,7 +52,7 @@ export function CardHeader({ className, children, action, ...props }: CardHeader
 export function CardTitle({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn('text-lg font-semibold text-gray-900', className)}
+      className={cn('text-base md:text-lg font-semibold text-gray-900', className)}
       {...props}
     >
       {children}
@@ -73,7 +73,7 @@ export function CardDescription({ className, children, ...props }: React.HTMLAtt
 
 export function CardContent({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('px-6 py-4', className)} {...props}>
+    <div className={cn('px-4 py-3 md:px-6 md:py-4', className)} {...props}>
       {children}
     </div>
   );
@@ -82,7 +82,7 @@ export function CardContent({ className, children, ...props }: React.HTMLAttribu
 export function CardFooter({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn('flex items-center px-6 py-4 border-t border-gray-100', className)}
+      className={cn('flex items-center px-4 py-3 md:px-6 md:py-4 border-t border-gray-100', className)}
       {...props}
     >
       {children}
@@ -109,27 +109,27 @@ interface StatCardProps {
 export function StatCard({ title, value, icon, change, className, iconBgColor = 'bg-blue-100' }: StatCardProps) {
   return (
     <Card className={cn('overflow-hidden', className)}>
-      <CardContent className="p-6">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">{title}</p>
-            <p className="text-2xl font-bold text-gray-900">{value}</p>
+      <CardContent className="p-3 md:p-6">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0 flex-1">
+            <p className="text-xs md:text-sm font-medium text-gray-500 mb-1 truncate">{title}</p>
+            <p className="text-lg md:text-2xl font-bold text-gray-900">{value}</p>
             {change && (
-              <div className="flex items-center gap-1 mt-2">
+              <div className="flex items-center gap-1 mt-1 md:mt-2 flex-wrap">
                 <span
                   className={cn(
-                    'text-xs font-medium px-2 py-0.5 rounded-full',
+                    'text-[10px] md:text-xs font-medium px-1.5 md:px-2 py-0.5 rounded-full',
                     change.type === 'increase' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
                   )}
                 >
                   {change.type === 'increase' ? '↑' : '↓'} {Math.abs(change.value)}%
                 </span>
-                <span className="text-xs text-gray-500">vs last month</span>
+                <span className="text-[10px] md:text-xs text-gray-500 hidden sm:inline">vs last month</span>
               </div>
             )}
           </div>
           {icon && (
-            <div className={cn('p-3 rounded-lg', iconBgColor)}>
+            <div className={cn('p-2 md:p-3 rounded-lg shrink-0', iconBgColor)}>
               {icon}
             </div>
           )}
