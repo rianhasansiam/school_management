@@ -61,7 +61,7 @@ export function SimpleLineChart({
   showLegend = false,
   dataKey = 'value',
   dataKey2 = 'value2',
-  label = 'Value',
+  label = 'students',
   label2 = 'Value 2',
 }: SimpleLineChartProps) {
   const hasSecondLine = data.some(d => d.value2 !== undefined);
@@ -78,6 +78,7 @@ export function SimpleLineChart({
             border: '1px solid #e5e7eb',
             borderRadius: '8px',
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+            color: '#374151',
           }}
         />
         {showLegend && <Legend />}
@@ -128,13 +129,14 @@ export function SimpleBarChart({
   color2 = CHART_COLORS.success,
   showGrid = true,
   showLegend = false,
-  label = 'Value',
+  label = 'students',
   label2 = 'Value 2',
 }: SimpleBarChartProps) {
   const hasSecondBar = data.some(d => d.value2 !== undefined);
 
   return (
     <ResponsiveContainer width="100%" height={height}>
+      
       <BarChart data={data} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
         {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />}
         <XAxis dataKey="name" tick={{ fontSize: 12 }} stroke="#9ca3af" />
@@ -145,6 +147,7 @@ export function SimpleBarChart({
             border: '1px solid #e5e7eb',
             borderRadius: '8px',
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+            color: '#374151',
           }}
         />
         {showLegend && <Legend />}
@@ -196,6 +199,7 @@ export function SimpleAreaChart({
             border: '1px solid #e5e7eb',
             borderRadius: '8px',
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+            color: '#374151',
           }}
         />
         {showLegend && <Legend />}
@@ -279,6 +283,7 @@ export function SimplePieChart({
             border: '1px solid #e5e7eb',
             borderRadius: '8px',
             boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+            color: '#374151',
           }}
         />
         {showLegend && <Legend />}
@@ -329,6 +334,7 @@ export function DonutChart({
               border: '1px solid #e5e7eb',
               borderRadius: '8px',
               boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+              color: '#374151',
             }}
           />
           {showLegend && <Legend />}

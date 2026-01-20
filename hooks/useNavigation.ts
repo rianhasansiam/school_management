@@ -26,12 +26,7 @@ export function useNavigation(): NavItem[] {
       icon: 'GraduationCap',
       roles: [UserRole.ADMIN],
     },
-    {
-      title: 'Teacher Assignments',
-      href: '/teacher-assignments',
-      icon: 'UserPlus',
-      roles: [UserRole.ADMIN],
-    },
+    
     {
       title: 'Classes',
       href: '/classes',
@@ -51,16 +46,36 @@ export function useNavigation(): NavItem[] {
       roles: [UserRole.ADMIN, UserRole.TEACHER],
     },
     {
-      title: 'Assignments',
-      href: '/assignments',
-      icon: 'FileText',
-      roles: [UserRole.ADMIN, UserRole.TEACHER],
+      title: 'Notices',
+      href: '/notices',
+      icon: 'Bell',
+      roles: [UserRole.ADMIN],
     },
     {
       title: 'Notes',
       href: '/notes',
       icon: 'StickyNote',
       roles: [UserRole.TEACHER],
+    },
+    {
+      title: 'Resources',
+      href: '/resources',
+      icon: 'BookMarked',
+      roles: [UserRole.ADMIN],
+      children: [
+        {
+          title: 'Books',
+          href: '/resources/books',
+          icon: 'BookOpen',
+          roles: [UserRole.ADMIN],
+        },
+        {
+          title: 'ID Cards',
+          href: '/resources/id-cards',
+          icon: 'CreditCard',
+          roles: [UserRole.ADMIN],
+        },
+      ],
     },
     {
       title: 'Finance',

@@ -25,6 +25,7 @@ import {
 import { DEMO_TEACHERS } from '@/lib/demo-data';
 import { formatDate, formatCurrency } from '@/lib/utils';
 import { Teacher } from '@/lib/types';
+import { useDebounce } from '@/hooks/useCommon';
 import {
   Plus,
   Search,
@@ -40,6 +41,7 @@ import {
 
 export default function TeachersPage() {
   const [searchQuery, setSearchQuery] = React.useState('');
+  const debouncedSearch = useDebounce(searchQuery, 300);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
   const [selectedTeacher, setSelectedTeacher] = React.useState<Teacher | null>(null);
@@ -52,12 +54,12 @@ export default function TeachersPage() {
       return (
         `${teacher.firstName} ${teacher.lastName}`
           .toLowerCase()
-          .includes(searchQuery.toLowerCase()) ||
-        teacher.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        teacher.employeeId.toLowerCase().includes(searchQuery.toLowerCase())
+          .includes(debouncedSearch.toLowerCase()) ||
+        teacher.email.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        teacher.employeeId.toLowerCase().includes(debouncedSearch.toLowerCase())
       );
     });
-  }, [searchQuery]);
+  }, [debouncedSearch]);
 
   // Paginate
   const paginatedTeachers = filteredTeachers.slice(

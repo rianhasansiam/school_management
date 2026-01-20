@@ -45,7 +45,6 @@ import {
   ArrowRight,
   CheckCircle,
   XCircle,
-  Clock,
   GraduationCap,
   Mail,
   Phone,
@@ -95,11 +94,10 @@ export function TeacherDashboard() {
     new Date(b.paidDate || 0).getTime() - new Date(a.paidDate || 0).getTime()
   )[0];
 
-  // Calculate attendance stats
+  // Calculate attendance stats (Present/Absent only)
   const attendanceStats = {
     present: todayAttendance.filter(a => a.status === AttendanceStatus.PRESENT).length,
     absent: todayAttendance.filter(a => a.status === AttendanceStatus.ABSENT).length,
-    late: todayAttendance.filter(a => a.status === AttendanceStatus.LATE).length,
     total: todayAttendance.length,
   };
 
@@ -447,7 +445,7 @@ export function TeacherDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-3">
                   <div className="p-3 bg-green-50 rounded-lg text-center">
                     <CheckCircle className="w-5 h-5 text-green-600 mx-auto" />
                     <p className="text-2xl font-bold text-green-700 mt-1">{attendanceStats.present}</p>
@@ -457,11 +455,6 @@ export function TeacherDashboard() {
                     <XCircle className="w-5 h-5 text-red-600 mx-auto" />
                     <p className="text-2xl font-bold text-red-700 mt-1">{attendanceStats.absent}</p>
                     <p className="text-xs text-red-600">Absent</p>
-                  </div>
-                  <div className="p-3 bg-yellow-50 rounded-lg text-center">
-                    <Clock className="w-5 h-5 text-yellow-600 mx-auto" />
-                    <p className="text-2xl font-bold text-yellow-700 mt-1">{attendanceStats.late}</p>
-                    <p className="text-xs text-yellow-600">Late</p>
                   </div>
                   <div className="p-3 bg-blue-50 rounded-lg text-center">
                     <Users className="w-5 h-5 text-blue-600 mx-auto" />

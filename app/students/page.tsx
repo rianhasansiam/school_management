@@ -27,6 +27,7 @@ import { DEMO_STUDENTS, DEMO_CLASSES, DEMO_TEACHERS, DEMO_SUBJECTS } from '@/lib
 import { formatDate, cn } from '@/lib/utils';
 import { useAuthStore } from '@/lib/store';
 import { UserRole, Student } from '@/lib/types';
+import { useDebounce } from '@/hooks/useCommon';
 import {
   Plus,
   Search,
@@ -61,6 +62,7 @@ export default function StudentsPage() {
   const availableClasses = isAdmin ? DEMO_CLASSES : DEMO_CLASSES.filter(c => myClassIds.has(c.id));
 
   const [searchQuery, setSearchQuery] = React.useState('');
+  const debouncedSearch = useDebounce(searchQuery, 300);
   const [selectedClass, setSelectedClass] = React.useState('');
   const [currentPage, setCurrentPage] = React.useState(1);
   const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
@@ -74,12 +76,12 @@ export default function StudentsPage() {
       const matchesSearch =
         `${student.firstName} ${student.lastName}`
           .toLowerCase()
-          .includes(searchQuery.toLowerCase()) ||
-        student.studentId.toLowerCase().includes(searchQuery.toLowerCase());
+          .includes(debouncedSearch.toLowerCase()) ||
+        student.studentId.toLowerCase().includes(debouncedSearch.toLowerCase());
       const matchesClass = !selectedClass || student.classId === selectedClass;
       return matchesSearch && matchesClass;
     });
-  }, [searchQuery, selectedClass, availableStudents]);
+  }, [debouncedSearch, selectedClass, availableStudents]);
 
   // Paginate
   const paginatedStudents = filteredStudents.slice(

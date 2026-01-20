@@ -6,6 +6,7 @@ import { useAuthStore } from '@/lib/store';
 import { AuthLayout } from '@/components/layout';
 import { Button, Input, Card, CardContent, Alert } from '@/components/ui';
 import { School, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { validate, rules } from '@/lib/validation';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function LoginPage() {
   const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
   const [error, setError] = React.useState('');
+  const [fieldErrors, setFieldErrors] = React.useState<Record<string, string>>({});
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -29,9 +31,19 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setFieldErrors({});
 
-    if (!email || !password) {
-      setError('Email and password are required');
+    // Validate form
+    const validation = validate(
+      { email, password },
+      {
+        email: [rules.required(), rules.email()],
+        password: [rules.required(), rules.minLength(4, 'Password must be at least 4 characters')],
+      }
+    );
+
+    if (!validation.isValid) {
+      setFieldErrors(validation.errors);
       return;
     }
 
@@ -76,6 +88,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               leftIcon={<Mail className="w-4 h-4" />}
+              error={fieldErrors.email}
               required
             />
 
@@ -86,6 +99,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               leftIcon={<Lock className="w-4 h-4" />}
+              error={fieldErrors.password}
               rightIcon={
                 <button
                   type="button"

@@ -41,6 +41,22 @@ export enum AssignmentStatus {
   CLOSED = 'closed',
 }
 
+export enum IssuanceStatus {
+  ISSUED = 'issued',
+  RETURNED = 'returned',
+  LOST = 'lost',
+  DAMAGED = 'damaged',
+  PENDING = 'pending',
+}
+
+export enum IDCardStatus {
+  ACTIVE = 'active',
+  EXPIRED = 'expired',
+  LOST = 'lost',
+  REPLACED = 'replaced',
+  PENDING = 'pending',
+}
+
 // ----- BASE TYPES -----
 
 export interface BaseEntity {
@@ -206,6 +222,45 @@ export interface ClassNote extends BaseEntity {
   teacherId: string;
   attachments?: string[];
   isPublished: boolean;
+}
+
+// ----- BOOKS & ID CARDS -----
+
+export interface Book extends BaseEntity {
+  isbn: string;
+  title: string;
+  author: string;
+  publisher?: string;
+  category: string;
+  totalCopies: number;
+  availableCopies: number;
+  classId?: string; // Optional: specific to a class
+  subject?: string;
+  isActive: boolean;
+}
+
+export interface BookIssuance extends BaseEntity {
+  bookId: string;
+  studentId: string;
+  issuedDate: Date;
+  dueDate: Date;
+  returnedDate?: Date;
+  status: IssuanceStatus;
+  issuedBy: string;
+  remarks?: string;
+  fine?: number;
+}
+
+export interface IDCard extends BaseEntity {
+  studentId: string;
+  cardNumber: string;
+  issuedDate: Date;
+  expiryDate: Date;
+  status: IDCardStatus;
+  issuedBy: string;
+  replacementCount: number;
+  replacementReason?: string;
+  photo?: string;
 }
 
 // ----- FINANCIAL -----

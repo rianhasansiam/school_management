@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# School Management System
+
+A comprehensive school management system built with modern web technologies.
+
+## Tech Stack
+
+- **Framework**: Next.js 16.1.3 (App Router)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4
+- **State Management**: Zustand
+- **Charts**: Recharts
+- **Icons**: Lucide React
+
+## Project Structure
+
+```
+├── app/                    # Next.js App Router pages
+│   ├── dashboard/          # Dashboard page
+│   ├── students/           # Student management
+│   ├── teachers/           # Teacher management
+│   ├── classes/            # Class management
+│   ├── attendance/         # Attendance tracking
+│   ├── assignments/        # Assignment management
+│   ├── finance/            # Financial management
+│   ├── reports/            # Reports & analytics
+│   └── login/              # Authentication
+│
+├── components/
+│   ├── ui/                 # Reusable UI components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── input.tsx
+│   │   ├── modal.tsx
+│   │   ├── table.tsx
+│   │   ├── skeleton.tsx
+│   │   └── error-boundary.tsx
+│   ├── layout/             # Layout components
+│   │   ├── sidebar.tsx
+│   │   ├── header.tsx
+│   │   └── dashboard-layout.tsx
+│   └── features/           # Feature-specific components
+│
+├── hooks/                  # Custom React hooks
+│   ├── useNavigation.ts
+│   └── useCommon.ts
+│
+├── lib/
+│   ├── config/             # App configuration
+│   ├── services/           # API services layer
+│   ├── validation/         # Form validation
+│   ├── types/              # TypeScript type definitions
+│   ├── constants.ts        # Application constants
+│   ├── demo-data.ts        # Demo/mock data
+│   ├── metadata.ts         # SEO metadata utilities
+│   ├── store.ts            # Zustand stores
+│   └── utils.ts            # Utility functions
+│
+└── public/                 # Static assets
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.0.0 or higher
+- npm or yarn
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone <repository-url>
+cd sm-system
+
+# Install dependencies
+npm install
+
+# Copy environment file
+cp .env.example .env.local
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run lint:fix     # Fix ESLint errors
+npm run type-check   # Run TypeScript type checking
+npm run clean        # Clean build artifacts
+```
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+### For Administrators
+- 📊 **Dashboard**: Overview with key metrics and charts
+- 👨‍🎓 **Student Management**: Add, edit, view student records
+- 👨‍🏫 **Teacher Management**: Manage teacher profiles and assignments
+- 🏫 **Class Management**: Organize classes and sections
+- 💰 **Financial Management**: Track fees, expenses, and payments
+- 📋 **Reports**: Generate various reports and analytics
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### For Teachers
+- 📊 **Personal Dashboard**: View assigned classes and schedules
+- ✅ **Attendance**: Mark and manage student attendance
+- 📝 **Assignments**: Create and manage class assignments
+- 📚 **Class Notes**: Upload and share study materials
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Demo Accounts
 
-## Deploy on Vercel
+| Role    | Email                  | Password |
+|---------|------------------------|----------|
+| Admin   | admin@school.edu.bd    | any      |
+| Teacher | rashida@school.edu.bd  | any      |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Code Quality
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **TypeScript**: Strict type checking enabled
+- **ESLint**: Code linting and formatting
+- **Component Structure**: Modular and reusable components
+- **Error Handling**: Error boundaries for graceful failures
+- **Loading States**: Skeleton loaders for better UX
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+This project is private and proprietary.

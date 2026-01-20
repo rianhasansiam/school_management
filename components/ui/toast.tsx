@@ -46,6 +46,7 @@ export function Toast({ id, type, title, message, duration = 5000, onClose }: To
       const timer = setTimeout(() => onClose(id), duration);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [id, duration, onClose]);
 
   return (

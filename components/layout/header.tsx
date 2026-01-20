@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { useAuthStore, useUIStore } from '@/lib/store';
+import { useAuthStore, useUIStore, useNoticeStore } from '@/lib/store';
 import { ROLE_LABELS } from '@/lib/constants';
 import { Avatar, DropdownMenu, DropdownMenuItem, DropdownMenuDivider } from '@/components/ui';
 import {
@@ -15,6 +15,10 @@ import {
   Moon,
   Sun,
   X,
+  CheckCheck,
+  AlertCircle,
+  AlertTriangle,
+  Info,
 } from 'lucide-react';
 
 // ============================================
@@ -45,7 +49,7 @@ export function Header() {
     <header
       className={cn(
         'fixed top-0 right-0 z-30 h-16 bg-white border-b border-gray-200',
-        'transition-all duration-300 ease-in-out',
+        'transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]',
         // Desktop positioning based on sidebar
         'lg:left-64',
         sidebarCollapsed && 'lg:left-20',
@@ -185,31 +189,42 @@ export function Header() {
 // ============================================
 
 function NotificationDropdown() {
-  const notifications = [
-    {
-      id: 1,
-      title: 'New Assignment',
-      message: 'Bengali essay submission deadline is today',
-      time: '5 minutes ago',
-      unread: true,
-    },
-    {
-      id: 2,
-      title: 'Fee Pending',
-      message: '3 students have pending fees',
-      time: '1 hour ago',
-      unread: true,
-    },
-    {
-      id: 3,
-      title: 'Attendance Report',
-      message: "Today's attendance report is ready",
-      time: '3 hours ago',
-      unread: false,
-    },
-  ];
+  const { notices, markAsRead, markAllAsRead } = useNoticeStore();
+  const unreadCount = notices.filter((n) => !n.isRead).length;
 
-  const unreadCount = notifications.filter((n) => n.unread).length;
+  const formatTime = (date: Date) => {
+    const now = new Date();
+    const diff = now.getTime() - new Date(date).getTime();
+    const minutes = Math.floor(diff / (1000 * 60));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if (minutes < 60) return `${minutes} minutes ago`;
+    if (hours < 24) return `${hours} hours ago`;
+    return `${days} days ago`;
+  };
+
+  const getPriorityIcon = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return <AlertCircle className="w-4 h-4 text-red-500" />;
+      case 'medium':
+        return <AlertTriangle className="w-4 h-4 text-amber-500" />;
+      default:
+        return <Info className="w-4 h-4 text-blue-500" />;
+    }
+  };
+
+  const getPriorityColor = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return 'border-l-red-500';
+      case 'medium':
+        return 'border-l-amber-500';
+      default:
+        return 'border-l-blue-500';
+    }
+  };
 
   return (
     <DropdownMenu
@@ -218,50 +233,84 @@ function NotificationDropdown() {
           <Bell className="w-5 h-5" />
           {unreadCount > 0 && (
             <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-              {unreadCount}
+              {unreadCount > 9 ? '9+' : unreadCount}
             </span>
           )}
         </button>
       }
     >
       <div className="w-80">
-        <div className="px-4 py-3 border-b border-gray-100">
+        <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
           <h3 className="font-semibold text-gray-900">Notifications</h3>
+          {unreadCount > 0 && (
+            <button
+              onClick={markAllAsRead}
+              className="text-xs text-blue-600 hover:text-blue-700 flex items-center gap-1"
+            >
+              <CheckCheck className="w-3 h-3" />
+              Mark all read
+            </button>
+          )}
         </div>
         <div className="max-h-80 overflow-y-auto">
-          {notifications.map((notification) => (
-            <div
-              key={notification.id}
-              className={cn(
-                'px-4 py-3 hover:bg-gray-50 cursor-pointer',
-                'border-b border-gray-50 last:border-b-0',
-                notification.unread && 'bg-blue-50/50'
-              )}
-            >
-              <div className="flex items-start gap-3">
-                {notification.unread && (
-                  <div className="w-2 h-2 mt-2 bg-blue-500 rounded-full flex-shrink-0" />
+          {notices.length === 0 ? (
+            <div className="px-4 py-8 text-center text-gray-500">
+              <Bell className="w-8 h-8 mx-auto mb-2 text-gray-300" />
+              <p className="text-sm">No notifications</p>
+            </div>
+          ) : (
+            notices.slice(0, 5).map((notice) => (
+              <div
+                key={notice.id}
+                onClick={() => markAsRead(notice.id)}
+                className={cn(
+                  'px-4 py-3 hover:bg-gray-50 cursor-pointer',
+                  'border-b border-gray-50 last:border-b-0',
+                  'border-l-4',
+                  getPriorityColor(notice.priority),
+                  !notice.isRead && 'bg-blue-50/50'
                 )}
-                <div className={cn(!notification.unread && 'ml-5')}>
-                  <p className="text-sm font-medium text-gray-900">
-                    {notification.title}
-                  </p>
-                  <p className="text-sm text-gray-500 mt-0.5">
-                    {notification.message}
-                  </p>
-                  <p className="text-xs text-gray-400 mt-1">
-                    {notification.time}
-                  </p>
+              >
+                <div className="flex items-start gap-3">
+                  {getPriorityIcon(notice.priority)}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-medium text-gray-900 truncate">
+                        {notice.title}
+                      </p>
+                      {!notice.isRead && (
+                        <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-500 mt-0.5 line-clamp-2">
+                      {notice.message}
+                    </p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-xs text-gray-400">
+                        {formatTime(notice.createdAt)}
+                      </p>
+                      <span className={cn(
+                        'text-xs px-1.5 py-0.5 rounded',
+                        notice.targetRole === 'teachers' && 'bg-purple-100 text-purple-700',
+                        notice.targetRole === 'students' && 'bg-green-100 text-green-700',
+                        notice.targetRole === 'all' && 'bg-gray-100 text-gray-700'
+                      )}>
+                        {notice.targetRole === 'all' ? 'Everyone' : notice.targetRole}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
-        <div className="px-4 py-3 border-t border-gray-100">
-          <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-            View all notifications
-          </button>
-        </div>
+        {notices.length > 5 && (
+          <div className="px-4 py-3 border-t border-gray-100">
+            <a href="/notices" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+              View all {notices.length} notifications
+            </a>
+          </div>
+        )}
       </div>
     </DropdownMenu>
   );

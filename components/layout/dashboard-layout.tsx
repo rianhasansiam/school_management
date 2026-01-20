@@ -57,7 +57,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Main Content */}
         <main
           className={cn(
-            'pt-16 min-h-screen transition-all duration-300 ease-in-out',
+            'pt-16 min-h-screen',
+            'transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]',
             'ml-0',
             sidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'
           )}

@@ -8,3 +8,5 @@ export * from './modal';
 export * from './toast';
 export * from './tabs';
 export * from './charts';
+export * from './skeleton';
+export * from './error-boundary';

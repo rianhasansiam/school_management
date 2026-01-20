@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { config } from "@/lib/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "School Management System",
-  description: "Comprehensive school management system for Bangladeshi schools",
+  title: {
+    default: config.app.name,
+    template: `%s | ${config.app.name}`,
+  },
+  description: config.app.description,
+  keywords: ["school management", "education", "students", "teachers", "Bangladesh"],
+  authors: [{ name: config.app.author }],
+  creator: config.app.author,
 };
 
 export default function RootLayout({

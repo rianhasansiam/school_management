@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { formatCurrency, formatDate, cn } from '@/lib/utils';
+import { formatCurrency, formatDate, formatRelativeTime, cn } from '@/lib/utils';
 import { DEMO_DASHBOARD_STATS, DEMO_STUDENTS, DEMO_TEACHERS, DEMO_TRANSACTIONS, DEMO_CLASSES } from '@/lib/demo-data';
 import {
   Card,
@@ -299,7 +299,7 @@ export function AdminDashboard() {
                   <div className="flex-1 min-w-0">
                     <p className="text-xs md:text-sm text-gray-900">{activity.description}</p>
                     <p className="text-xs text-gray-500 mt-1">
-                      {activity.userName} • {formatDate(activity.timestamp, 'dd MMM, hh:mm a')}
+                      {activity.userName} • {formatRelativeTime(activity.timestamp)}
                     </p>
                   </div>
                 </div>

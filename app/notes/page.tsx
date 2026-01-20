@@ -35,6 +35,7 @@ import { formatDate, cn } from '@/lib/utils';
 import { CLASS_OPTIONS, SUBJECT_OPTIONS } from '@/lib/constants';
 import { ClassNote, UserRole } from '@/lib/types';
 import { useAuthStore } from '@/lib/store';
+import { useDebounce } from '@/hooks/useCommon';
 import {
   Plus,
   Search,
@@ -65,6 +66,7 @@ export default function NotesPage() {
     : DEMO_CLASS_NOTES;
 
   const [searchTerm, setSearchTerm] = React.useState('');
+  const debouncedSearch = useDebounce(searchTerm, 300);
   const [classFilter, setClassFilter] = React.useState('');
   const [subjectFilter, setSubjectFilter] = React.useState('');
   const [statusFilter, setStatusFilter] = React.useState('');
@@ -76,8 +78,8 @@ export default function NotesPage() {
   const filteredNotes = React.useMemo(() => {
     return availableNotes.filter((note) => {
       const matchesSearch =
-        note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        note.content?.toLowerCase().includes(searchTerm.toLowerCase());
+        note.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+        note.content?.toLowerCase().includes(debouncedSearch.toLowerCase());
 
       const matchesClass = !classFilter || note.classId === classFilter;
       const matchesSubject = !subjectFilter || note.subjectId === subjectFilter;
@@ -88,7 +90,7 @@ export default function NotesPage() {
 
       return matchesSearch && matchesClass && matchesSubject && matchesStatus;
     });
-  }, [searchTerm, classFilter, subjectFilter, statusFilter, availableNotes]);
+  }, [debouncedSearch, classFilter, subjectFilter, statusFilter, availableNotes]);
 
   // Pagination
   const totalPages = Math.ceil(filteredNotes.length / ITEMS_PER_PAGE);
