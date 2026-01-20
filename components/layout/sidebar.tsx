@@ -14,6 +14,7 @@ import {
   School,
   BookOpen,
   ClipboardCheck,
+  ClipboardList,
   FileText,
   StickyNote,
   Wallet,
@@ -36,6 +37,9 @@ import {
   Pin,
   PinOff,
   LucideIcon,
+  UserCheck,
+  HardDrive,
+  Package,
 } from 'lucide-react';
 
 // Icon mapping
@@ -46,6 +50,7 @@ const iconMap: Record<string, LucideIcon> = {
   School,
   BookOpen,
   ClipboardCheck,
+  ClipboardList,
   FileText,
   StickyNote,
   Wallet,
@@ -61,6 +66,9 @@ const iconMap: Record<string, LucideIcon> = {
   BookMarked,
   CreditCard,
   Bell,
+  UserCheck,
+  HardDrive,
+  Package,
 };
 
 // ============================================

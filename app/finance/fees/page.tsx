@@ -32,13 +32,15 @@ import {
   CheckCircle,
   Clock,
   Search,
-  Filter,
   Download,
   Plus,
   Eye,
   Printer,
   DollarSign,
   AlertCircle,
+  History,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
 const FEE_TYPES = [
@@ -60,6 +62,7 @@ export default function FeesPage() {
   const [isCollectFeeOpen, setIsCollectFeeOpen] = React.useState(false);
   const [selectedFee, setSelectedFee] = React.useState<string | null>(null);
   const [showSuccess, setShowSuccess] = React.useState(false);
+  const [selectedStudentForHistory, setSelectedStudentForHistory] = React.useState<string | null>(null);
 
   // Calculate stats
   const totalFees = DEMO_FEES.reduce((sum, f) => sum + f.amount, 0);
@@ -289,6 +292,15 @@ export default function FeesPage() {
                     </TableCell>
                     <TableCell>
                       <div className="flex justify-end gap-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => setSelectedStudentForHistory(student?.id || null)}
+                          className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                          title="View Payment History"
+                        >
+                          <History className="w-4 h-4" />
+                        </Button>
                         {fee.status === PaymentStatus.PENDING ? (
                           <Button
                             variant="primary"
@@ -340,6 +352,13 @@ export default function FeesPage() {
           }}
         />
       </Modal>
+
+      {/* Payment History Modal */}
+      <PaymentHistoryModal
+        studentId={selectedStudentForHistory}
+        isOpen={!!selectedStudentForHistory}
+        onClose={() => setSelectedStudentForHistory(null)}
+      />
     </DashboardLayout>
   );
 }
@@ -481,5 +500,209 @@ function CollectFeeForm({ feeId, onClose }: { feeId: string | null; onClose: () 
         </Button>
       </div>
     </form>
+  );
+}
+
+// ============================================
+// PAYMENT HISTORY MODAL
+// ============================================
+
+interface PaymentHistoryModalProps {
+  studentId: string | null;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+function PaymentHistoryModal({ studentId, isOpen, onClose }: PaymentHistoryModalProps) {
+  const [selectedYear, setSelectedYear] = React.useState('2026');
+  
+  const student = DEMO_STUDENTS.find((s) => s.id === studentId);
+  const classInfo = student ? DEMO_CLASSES.find((c) => c.id === student.classId) : null;
+  
+  // Get all fees for this student
+  const studentFees = React.useMemo(() => {
+    if (!studentId) return [];
+    return DEMO_FEES
+      .filter((f) => f.studentId === studentId && f.academicYear === selectedYear)
+      .sort((a, b) => new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime());
+  }, [studentId, selectedYear]);
+
+  // Calculate summary stats
+  const stats = React.useMemo(() => {
+    const totalAmount = studentFees.reduce((sum, f) => sum + f.amount, 0);
+    const paidAmount = studentFees
+      .filter((f) => f.status === PaymentStatus.COMPLETED)
+      .reduce((sum, f) => sum + f.amount, 0);
+    const pendingAmount = studentFees
+      .filter((f) => f.status === PaymentStatus.PENDING)
+      .reduce((sum, f) => sum + f.amount, 0);
+    const paidCount = studentFees.filter((f) => f.status === PaymentStatus.COMPLETED).length;
+    const pendingCount = studentFees.filter((f) => f.status === PaymentStatus.PENDING).length;
+
+    return { totalAmount, paidAmount, pendingAmount, paidCount, pendingCount };
+  }, [studentFees]);
+
+  // Get available years
+  const availableYears = React.useMemo(() => {
+    if (!studentId) return [];
+    const years = new Set(
+      DEMO_FEES.filter((f) => f.studentId === studentId).map((f) => f.academicYear)
+    );
+    return Array.from(years).sort((a, b) => b.localeCompare(a));
+  }, [studentId]);
+
+  if (!student) return null;
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Payment History"
+      size="lg"
+    >
+      <div className="space-y-6">
+        {/* Student Info */}
+        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-center gap-4">
+            <Avatar
+              src={student.avatar}
+              alt={`${student.firstName} ${student.lastName}`}
+              size="lg"
+            />
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {student.firstName} {student.lastName}
+              </h3>
+              <p className="text-sm text-gray-500">{student.studentId}</p>
+              <Badge variant="info" className="mt-1">{classInfo?.name}</Badge>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-gray-500">Year:</span>
+            <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+              className="px-3 py-1.5 text-sm border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {availableYears.map((year) => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Summary Stats */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="p-4 bg-blue-50 rounded-lg text-center border border-blue-200">
+            <p className="text-2xl font-bold text-blue-700">{formatCurrency(stats.totalAmount)}</p>
+            <p className="text-sm text-blue-600">Total Fees</p>
+          </div>
+          <div className="p-4 bg-green-50 rounded-lg text-center border border-green-200">
+            <p className="text-2xl font-bold text-green-700">{formatCurrency(stats.paidAmount)}</p>
+            <p className="text-sm text-green-600">Paid ({stats.paidCount})</p>
+          </div>
+          <div className="p-4 bg-amber-50 rounded-lg text-center border border-amber-200">
+            <p className="text-2xl font-bold text-amber-700">{formatCurrency(stats.pendingAmount)}</p>
+            <p className="text-sm text-amber-600">Pending ({stats.pendingCount})</p>
+          </div>
+        </div>
+
+        {/* Payment Records */}
+        <div>
+          <h4 className="font-medium text-gray-700 mb-3">Payment Records</h4>
+          {studentFees.length > 0 ? (
+            <div className="border rounded-lg overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-gray-50">
+                    <TableHead>Fee Type</TableHead>
+                    <TableHead>Period</TableHead>
+                    <TableHead>Due Date</TableHead>
+                    <TableHead className="text-right">Amount</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Paid On</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {studentFees.map((fee) => {
+                    const isOverdue = fee.status === PaymentStatus.PENDING && new Date(fee.dueDate) < new Date();
+                    return (
+                      <TableRow key={fee.id} className={cn(
+                        fee.status === PaymentStatus.COMPLETED ? 'bg-green-50/30' : '',
+                        isOverdue ? 'bg-red-50/30' : ''
+                      )}>
+                        <TableCell>
+                          <div className="flex items-center gap-2">
+                            {fee.status === PaymentStatus.COMPLETED ? (
+                              <CheckCircle className="w-4 h-4 text-green-600" />
+                            ) : (
+                              <Clock className="w-4 h-4 text-amber-600" />
+                            )}
+                            <span className="font-medium">
+                              {FEE_TYPES.find((t) => t.value === fee.feeType)?.label}
+                            </span>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          {fee.month && MONTHS.find((m) => m.value === fee.month)?.label}{' '}
+                          {fee.academicYear}
+                        </TableCell>
+                        <TableCell>
+                          <span className={cn(isOverdue && 'text-red-600 font-medium')}>
+                            {formatDate(fee.dueDate)}
+                          </span>
+                        </TableCell>
+                        <TableCell className="text-right font-semibold">
+                          {formatCurrency(fee.amount)}
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant={fee.status === PaymentStatus.COMPLETED ? 'success' : isOverdue ? 'danger' : 'warning'}>
+                            {fee.status === PaymentStatus.COMPLETED ? 'Paid' : isOverdue ? 'Overdue' : 'Pending'}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          {fee.status === PaymentStatus.COMPLETED && fee.paidDate ? (
+                            <span className="text-sm text-gray-600">{formatDate(fee.paidDate)}</span>
+                          ) : (
+                            <span className="text-sm text-gray-400">-</span>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </div>
+          ) : (
+            <div className="p-8 text-center text-gray-500 border rounded-lg bg-gray-50">
+              <Receipt className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+              <p>No payment records found for {selectedYear}</p>
+            </div>
+          )}
+        </div>
+
+        {/* Payment Progress */}
+        {studentFees.length > 0 && (
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="flex justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700">Payment Progress</span>
+              <span className="text-sm font-semibold text-gray-900">
+                {stats.totalAmount > 0 ? Math.round((stats.paidAmount / stats.totalAmount) * 100) : 0}%
+              </span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3">
+              <div
+                className="bg-green-500 h-3 rounded-full transition-all duration-300"
+                style={{ width: `${stats.totalAmount > 0 ? (stats.paidAmount / stats.totalAmount) * 100 : 0}%` }}
+              />
+            </div>
+            <div className="flex justify-between mt-2 text-xs text-gray-500">
+              <span>Paid: {formatCurrency(stats.paidAmount)}</span>
+              <span>Remaining: {formatCurrency(stats.pendingAmount)}</span>
+            </div>
+          </div>
+        )}
+      </div>
+    </Modal>
   );
 }

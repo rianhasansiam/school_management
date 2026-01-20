@@ -23,7 +23,7 @@ import {
   DropdownMenuItem,
   DropdownMenuDivider,
 } from '@/components/ui';
-import { DEMO_STUDENTS, DEMO_CLASSES, DEMO_TEACHERS, DEMO_SUBJECTS } from '@/lib/demo-data';
+import { DEMO_STUDENTS, DEMO_CLASSES, DEMO_TEACHERS } from '@/lib/demo-data';
 import { formatDate, cn } from '@/lib/utils';
 import { useAuthStore } from '@/lib/store';
 import { UserRole, Student } from '@/lib/types';
@@ -46,20 +46,16 @@ export default function StudentsPage() {
   const isAdmin = user?.role === UserRole.ADMIN;
   const isTeacher = user?.role === UserRole.TEACHER;
 
-  // Get teacher's classes if logged in as teacher
+  // Get teacher's classes if logged in as teacher (only classes where teacher is class teacher)
   const myTeacherProfile = isTeacher ? DEMO_TEACHERS.find(t => t.userId === user?.id) : null;
   const myClasses = myTeacherProfile ? DEMO_CLASSES.filter(c => c.classTeacherId === myTeacherProfile.id) : [];
-  const mySubjects = myTeacherProfile ? DEMO_SUBJECTS.filter(s => s.teacherId === myTeacherProfile.id) : [];
-  const myClassIds = new Set([
-    ...myClasses.map(c => c.id),
-    ...mySubjects.map(s => s.classId),
-  ]);
+  const myClassIds = new Set(myClasses.map(c => c.id));
 
-  // Get available students (all for admin, only from teacher's classes for teacher)
+  // Get available students (all for admin, only from teacher's class section for teacher)
   const availableStudents = isAdmin ? DEMO_STUDENTS : DEMO_STUDENTS.filter(s => myClassIds.has(s.classId));
   
   // Get available classes for filter (all for admin, only teacher's classes for teacher)
-  const availableClasses = isAdmin ? DEMO_CLASSES : DEMO_CLASSES.filter(c => myClassIds.has(c.id));
+  const availableClasses = isAdmin ? DEMO_CLASSES : myClasses;
 
   const [searchQuery, setSearchQuery] = React.useState('');
   const debouncedSearch = useDebounce(searchQuery, 300);
@@ -98,11 +94,14 @@ export default function StudentsPage() {
   return (
     <DashboardLayout>
       <PageHeader
-        title="Students"
-        description="All students"
+        title={isTeacher ? 'My Students' : 'Students'}
+        description={isTeacher 
+          ? `Students from your class section${myClasses.length > 0 ? ` (${myClasses.map(c => c.name).join(', ')})` : ''}`
+          : 'All students'
+        }
         breadcrumbs={[
           { label: 'Dashboard', href: '/dashboard' },
-          { label: 'Students' },
+          { label: isTeacher ? 'My Students' : 'Students' },
         ]}
         actions={
           isAdmin && (

@@ -52,6 +52,7 @@ import {
   DollarSign,
   CalendarDays,
   BarChart3,
+  Clock,
 } from 'lucide-react';
 
 // ============================================

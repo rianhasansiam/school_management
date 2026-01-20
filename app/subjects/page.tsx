@@ -23,11 +23,12 @@ import {
 } from '@/components/ui';
 import {
   DEMO_SUBJECTS,
+  DEMO_TEACHERS,
   getClassById,
   getTeacherById,
 } from '@/lib/demo-data';
 import { CLASS_OPTIONS } from '@/lib/constants';
-import { Subject, UserRole } from '@/lib/types';
+import { Subject, UserRole, Teacher } from '@/lib/types';
 import { useAuthStore, useNoticeStore, Notice } from '@/lib/store';
 import { useDebounce } from '@/hooks/useCommon';
 import {
@@ -61,10 +62,18 @@ type ViewMode = 'table' | 'grid';
 export default function SubjectsPage() {
   const { user } = useAuthStore();
   const isAdmin = user?.role === UserRole.ADMIN;
+  const isTeacher = user?.role === UserRole.TEACHER;
   const { notices, addNotice, deleteNotice } = useNoticeStore();
 
-  // Get available subjects (all for admin, filtered for others)
-  const availableSubjects = DEMO_SUBJECTS;
+  // Get teacher profile if logged in as teacher
+  const myTeacherProfile = isTeacher
+    ? DEMO_TEACHERS.find((t: Teacher) => t.userId === user?.id)
+    : null;
+
+  // Get available subjects (all for admin, only assigned subjects for teacher)
+  const availableSubjects = isAdmin
+    ? DEMO_SUBJECTS
+    : DEMO_SUBJECTS.filter((s: Subject) => s.teacherId === myTeacherProfile?.id);
 
   const [searchTerm, setSearchTerm] = React.useState('');
   const debouncedSearch = useDebounce(searchTerm, 300);
@@ -82,10 +91,10 @@ export default function SubjectsPage() {
 
   // Stats calculations
   const stats = React.useMemo(() => {
-    const totalSubjects = DEMO_SUBJECTS.length;
-    const totalClasses = new Set(DEMO_SUBJECTS.map(s => s.classId)).size;
-    const activeSubjects = DEMO_SUBJECTS.filter(s => s.isActive).length;
-    const assignedTeachers = new Set(DEMO_SUBJECTS.filter(s => s.teacherId).map(s => s.teacherId)).size;
+    const totalSubjects = availableSubjects.length;
+    const totalClasses = new Set(availableSubjects.map((s: Subject) => s.classId)).size;
+    const activeSubjects = availableSubjects.filter((s: Subject) => s.isActive).length;
+    const assignedTeachers = new Set(availableSubjects.filter((s: Subject) => s.teacherId).map((s: Subject) => s.teacherId)).size;
     
     return {
       totalSubjects,
@@ -93,7 +102,7 @@ export default function SubjectsPage() {
       activeSubjects,
       assignedTeachers,
     };
-  }, []);
+  }, [availableSubjects]);
 
   // Filter subjects
   const filteredSubjects = React.useMemo(() => {
@@ -127,17 +136,19 @@ export default function SubjectsPage() {
   return (
     <DashboardLayout>
       <PageHeader
-        title="Subject Management"
-        description="Manage subjects and teacher assignments"
+        title={isTeacher ? 'My Subjects' : 'Subject Management'}
+        description={isTeacher ? 'View your assigned subjects' : 'Manage subjects and teacher assignments'}
         breadcrumbs={[
           { label: 'Dashboard', href: '/dashboard' },
-          { label: 'Subjects' },
+          { label: isTeacher ? 'My Subjects' : 'Subjects' },
         ]}
         actions={
-          <Button onClick={() => setIsAddModalOpen(true)}>
-            <Plus className="w-4 h-4 mr-2" />
-            New Subject
-          </Button>
+          isAdmin ? (
+            <Button onClick={() => setIsAddModalOpen(true)}>
+              <Plus className="w-4 h-4 mr-2" />
+              New Subject
+            </Button>
+          ) : undefined
         }
       />
 
@@ -271,16 +282,20 @@ export default function SubjectsPage() {
           {paginatedSubjects.length === 0 ? (
             <EmptyState
               icon={<BookText className="w-12 h-12" />}
-              title="No subjects found"
-              description={hasActiveFilters 
-                ? "Try adjusting your search or filters" 
-                : "Create your first subject to get started"
+              title={isTeacher ? 'No subjects assigned' : 'No subjects found'}
+              description={isTeacher 
+                ? 'You have no subjects assigned to you yet. Please contact the administrator.'
+                : hasActiveFilters 
+                  ? 'Try adjusting your search or filters' 
+                  : 'Create your first subject to get started'
               }
               action={
-                <Button onClick={() => setIsAddModalOpen(true)}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  New Subject
-                </Button>
+                isAdmin ? (
+                  <Button onClick={() => setIsAddModalOpen(true)}>
+                    <Plus className="w-4 h-4 mr-2" />
+                    New Subject
+                  </Button>
+                ) : undefined
               }
             />
           ) : viewMode === 'table' ? (
@@ -364,12 +379,16 @@ export default function SubjectsPage() {
                               >
                                 <Eye className="w-4 h-4" />
                               </Button>
-                              <Button variant="ghost" size="sm" className="hover:bg-amber-50 hover:text-amber-600">
-                                <Edit className="w-4 h-4" />
-                              </Button>
-                              <Button variant="ghost" size="sm" className="hover:bg-red-50 text-red-600">
-                                <Trash2 className="w-4 h-4" />
-                              </Button>
+                              {isAdmin && (
+                                <>
+                                  <Button variant="ghost" size="sm" className="hover:bg-amber-50 hover:text-amber-600">
+                                    <Edit className="w-4 h-4" />
+                                  </Button>
+                                  <Button variant="ghost" size="sm" className="hover:bg-red-50 text-red-600">
+                                    <Trash2 className="w-4 h-4" />
+                                  </Button>
+                                </>
+                              )}
                             </div>
                           </TableCell>
                         </TableRow>
@@ -816,7 +835,7 @@ function SubjectDetails({ subject, onClose }: SubjectDetailsProps) {
             <Layers className="w-4 h-4" />
             Class
           </p>
-          <p className="font-medium">
+          <p className="font-medium text-black">
             {classInfo ? `${classInfo.name} (Section ${classInfo.section})` : '-'}
           </p>
         </div>
@@ -825,7 +844,7 @@ function SubjectDetails({ subject, onClose }: SubjectDetailsProps) {
             <Calendar className="w-4 h-4" />
             Academic Year
           </p>
-          <p className="font-medium">{classInfo?.academicYear || '-'}</p>
+          <p className="font-medium text-black">{classInfo?.academicYear || '-'}</p>
         </div>
       </div>
 

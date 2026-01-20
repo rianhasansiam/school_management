@@ -40,10 +40,28 @@ export function useNavigation(): NavItem[] {
       roles: [UserRole.ADMIN, UserRole.TEACHER],
     },
     {
-      title: 'Attendance',
+      title: 'Teacher Attendance',
       href: '/attendance',
       icon: 'ClipboardCheck',
+      roles: [UserRole.ADMIN],
+    },
+    {
+      title: 'View Teacher Attendance',
+      href: '/teacher-attendance-view',
+      icon: 'ClipboardList',
+      roles: [UserRole.TEACHER],
+    },
+    {
+      title: 'Student Attendance',
+      href: '/student-attendance',
+      icon: 'UserCheck',
       roles: [UserRole.ADMIN, UserRole.TEACHER],
+    },
+    {
+      title: 'Student Resources',
+      href: '/student-resources',
+      icon: 'Package',
+      roles: [UserRole.TEACHER],
     },
     {
       title: 'Notices',
@@ -52,9 +70,9 @@ export function useNavigation(): NavItem[] {
       roles: [UserRole.ADMIN],
     },
     {
-      title: 'Notes',
+      title: 'My Drive',
       href: '/notes',
-      icon: 'StickyNote',
+      icon: 'HardDrive',
       roles: [UserRole.TEACHER],
     },
     {
