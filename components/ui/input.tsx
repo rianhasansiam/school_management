@@ -37,7 +37,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               'block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5',
               'text-gray-900 placeholder-gray-400',
-              'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+              'focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent',
               'disabled:bg-gray-100 disabled:cursor-not-allowed',
               'transition-all duration-200',
               leftIcon && 'pl-10',
@@ -89,7 +89,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={cn(
             'block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5',
             'text-gray-900 placeholder-gray-400',
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+            'focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent',
             'disabled:bg-gray-100 disabled:cursor-not-allowed',
             'transition-all duration-200 resize-none',
             error && 'border-red-500 focus:ring-red-500',
@@ -141,7 +141,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           className={cn(
             'block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5',
             'text-gray-900',
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+            'focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent',
             'disabled:bg-gray-100 disabled:cursor-not-allowed',
             'transition-all duration-200',
             error && 'border-red-500 focus:ring-red-500',
@@ -187,8 +187,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           type="checkbox"
           id={checkboxId}
           className={cn(
-            'h-4 w-4 rounded border-gray-300 text-blue-600',
-            'focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+            'h-4 w-4 rounded border-gray-300 text-black',
+            'focus:ring-2 focus:ring-black focus:ring-offset-2',
             'transition-all duration-200',
             className
           )}

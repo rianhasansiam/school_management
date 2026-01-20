@@ -363,7 +363,7 @@ export default function StudentAttendancePage() {
               className={cn(
                 'flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
                 activeTab === 'mark'
-                  ? 'border-blue-600 text-blue-600'
+                  ? 'border-black text-black'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               )}
             >
@@ -375,7 +375,7 @@ export default function StudentAttendancePage() {
               className={cn(
                 'flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
                 activeTab === 'history'
-                  ? 'border-blue-600 text-blue-600'
+                  ? 'border-black text-black'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               )}
             >
@@ -398,7 +398,7 @@ export default function StudentAttendancePage() {
                         <select
                           value={selectedClassId}
                           onChange={(e) => setSelectedClassId(e.target.value)}
-                          className="px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[150px]"
+                          className="px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black min-w-[150px]"
                         >
                           {myClasses.map((cls: Class) => (
                             <option key={cls.id} value={cls.id}>
@@ -416,7 +416,7 @@ export default function StudentAttendancePage() {
                           value={selectedDate}
                           onChange={(e) => setSelectedDate(e.target.value)}
                           max={new Date().toISOString().split('T')[0]}
-                          className="px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black"
                         />
                       </div>
                     </div>
@@ -438,13 +438,13 @@ export default function StudentAttendancePage() {
 
               {/* Stats Cards */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
-                <Card className="bg-blue-50 border-blue-200">
+                <Card className="bg-gray-50 border-gray-200">
                   <CardContent className="p-3 md:p-4">
                     <div className="flex items-center gap-2 md:gap-3">
-                      <Users className="w-6 h-6 md:w-8 md:h-8 text-blue-600 shrink-0" />
+                      <Users className="w-6 h-6 md:w-8 md:h-8 text-gray-600 shrink-0" />
                       <div className="min-w-0">
-                        <p className="text-xs md:text-sm text-blue-600 truncate">Total Students</p>
-                        <p className="text-lg md:text-2xl font-bold text-blue-800">
+                        <p className="text-xs md:text-sm text-gray-600 truncate">Total Students</p>
+                        <p className="text-lg md:text-2xl font-bold text-gray-800">
                           {classStudents.length}
                         </p>
                       </div>
@@ -625,8 +625,8 @@ export default function StudentAttendancePage() {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-blue-100 rounded-lg">
-                        <Users className="w-5 h-5 text-blue-600" />
+                      <div className="p-2 bg-gray-100 rounded-lg">
+                        <Users className="w-5 h-5 text-gray-600" />
                       </div>
                       <div>
                         <p className="text-2xl font-bold text-gray-900">{classStudents.length}</p>
@@ -707,7 +707,7 @@ export default function StudentAttendancePage() {
                         <select
                           value={selectedClassId}
                           onChange={(e) => setSelectedClassId(e.target.value)}
-                          className="px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[150px]"
+                          className="px-3 py-2 border text-black border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black min-w-[150px]"
                         >
                           {myClasses.map((cls: Class) => (
                             <option key={cls.id} value={cls.id}>
@@ -749,7 +749,7 @@ export default function StudentAttendancePage() {
                         className={cn(
                           'block w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-2',
                           'text-gray-900 placeholder:text-gray-400',
-                          'focus:outline-none focus:ring-2 focus:ring-blue-500'
+                          'focus:outline-none focus:ring-2 focus:ring-black'
                         )}
                       />
                     </div>
@@ -817,7 +817,7 @@ export default function StudentAttendancePage() {
                               <TableCell className="text-center">
                                 <button
                                   onClick={() => setSelectedStudent(student)}
-                                  className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                  className="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                                 >
                                   <Eye className="w-4 h-4" />
                                   Details

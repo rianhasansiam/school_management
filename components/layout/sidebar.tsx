@@ -194,7 +194,7 @@ export function Sidebar() {
               !showExpanded && isLgScreen && "hidden"
             )}
           >
-            <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-blue-500/20">
+            <div className="w-9 h-9 bg-black rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-black/20">
               <School className="w-5 h-5 text-white" />
             </div>
             <span className={cn(
@@ -202,7 +202,7 @@ export function Sidebar() {
               "transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]",
               !showExpanded && isLgScreen ? "opacity-0 w-0 overflow-hidden" : "opacity-100"
             )}>
-              School Management
+              ByteEdu
             </span>
           </Link>
           
@@ -211,9 +211,9 @@ export function Sidebar() {
             <button
               onClick={toggleSidebarCollapse}
               className={cn(
-                "w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl",
-                "flex items-center justify-center shadow-md shadow-blue-500/20",
-                "hover:from-blue-600 hover:to-blue-700",
+                "w-10 h-10 bg-black rounded-xl",
+                "flex items-center justify-center shadow-md shadow-black/20",
+                "hover:bg-gray-800",
                 "transition-all duration-200 hover:scale-105 active:scale-95"
               )}
               title="Expand Sidebar"
@@ -250,7 +250,7 @@ export function Sidebar() {
                   className={cn(
                     "p-2 rounded-lg text-gray-500",
                     "transition-all duration-200 hover:scale-105 active:scale-95",
-                    isPinned ? "hover:bg-blue-50 text-blue-500" : "hover:bg-gray-100"
+                    isPinned ? "hover:bg-gray-100 text-black" : "hover:bg-gray-100"
                   )}
                   title={isPinned ? "Unpin Sidebar" : "Pin Sidebar"}
                 >
@@ -392,7 +392,7 @@ function SidebarItem({
         'group relative flex items-center gap-3 px-3 py-2.5 rounded-xl',
         'transition-all duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] cursor-pointer',
         isActive
-          ? 'bg-blue-50 text-blue-600 shadow-sm'
+          ? 'bg-gray-100 text-black shadow-sm'
           : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
         isCollapsed && 'justify-center px-2'
       )}
@@ -407,11 +407,11 @@ function SidebarItem({
         )}>
           <Icon className={cn(
             'w-5 h-5 transition-colors duration-200',
-            isActive && 'text-blue-600'
+            isActive && 'text-black'
           )} />
           {/* Active indicator dot for collapsed state */}
           {isActive && isCollapsed && (
-            <span className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full" />
+            <span className="absolute -top-1 -right-1 w-2 h-2 bg-black rounded-full" />
           )}
         </div>
       )}
@@ -478,7 +478,7 @@ function SidebarItem({
                     'flex items-center gap-3 px-3 py-2 rounded-lg text-sm',
                     'transition-all duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]',
                     isChildActive
-                      ? 'bg-blue-50 text-blue-600'
+                      ? 'bg-gray-100 text-black'
                       : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900 hover:translate-x-1'
                   )}
                 >

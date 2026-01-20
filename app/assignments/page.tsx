@@ -140,13 +140,13 @@ export default function AssignmentsPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-gray-50 border-gray-200">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <FileText className="w-8 h-8 text-blue-600" />
+              <FileText className="w-8 h-8 text-gray-800" />
               <div>
-                <p className="text-sm text-blue-600">Total Assignments</p>
-                <p className="text-2xl font-bold text-blue-800">
+                <p className="text-sm text-gray-600">Total Assignments</p>
+                <p className="text-2xl font-bold text-gray-800">
                   {DEMO_ASSIGNMENTS.length}
                 </p>
               </div>

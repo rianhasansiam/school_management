@@ -81,13 +81,13 @@ export default function TeacherAssignmentsPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-gray-50 border-gray-200">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <Users className="w-8 h-8 text-blue-600" />
+              <Users className="w-8 h-8 text-gray-600" />
               <div>
-                <p className="text-sm text-blue-600">Total Teachers</p>
-                <p className="text-2xl font-bold text-blue-800">
+                <p className="text-sm text-gray-600">Total Teachers</p>
+                <p className="text-2xl font-bold text-gray-800">
                   {DEMO_TEACHERS.length}
                 </p>
               </div>
@@ -585,8 +585,8 @@ function AssignClassTeacherForm({ classData, onClose }: AssignClassTeacherFormPr
       />
 
       {selectedTeacherId && (
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <p className="text-sm text-blue-600 mb-2">Selected Teacher</p>
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600 mb-2">Selected Teacher</p>
           {(() => {
             const teacher = getTeacherById(selectedTeacherId);
             if (!teacher) return null;
@@ -857,8 +857,8 @@ function AssignSubjectTeacherForm({ subject, onClose }: AssignSubjectTeacherForm
       />
 
       {selectedTeacherId && (
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <p className="text-sm text-blue-600 mb-2">Selected Teacher</p>
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600 mb-2">Selected Teacher</p>
           {(() => {
             const teacher = getTeacherById(selectedTeacherId);
             if (!teacher) return null;
@@ -1131,8 +1131,8 @@ function AssignTaskForm({ task, onClose }: AssignTaskFormProps) {
       />
 
       {selectedTeacherId && (
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <p className="text-sm text-blue-600 mb-2">Selected Teacher</p>
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <p className="text-sm text-gray-600 mb-2">Selected Teacher</p>
           {(() => {
             const teacher = getTeacherById(selectedTeacherId);
             if (!teacher) return null;

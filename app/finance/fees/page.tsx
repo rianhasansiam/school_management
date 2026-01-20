@@ -130,8 +130,8 @@ export default function FeesPage() {
         <StatCard
           title="Total Fees"
           value={formatCurrency(totalFees)}
-          icon={<DollarSign className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<DollarSign className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
         />
         <StatCard
           title="Collected"
@@ -169,7 +169,7 @@ export default function FeesPage() {
                   placeholder="Search by student name or ID..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
                 />
               </div>
             </div>
@@ -296,7 +296,7 @@ export default function FeesPage() {
                           variant="ghost"
                           size="sm"
                           onClick={() => setSelectedStudentForHistory(student?.id || null)}
-                          className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                          className="text-gray-600 hover:text-black hover:bg-gray-50"
                           title="View Payment History"
                         >
                           <History className="w-4 h-4" />
@@ -582,7 +582,7 @@ function PaymentHistoryModal({ studentId, isOpen, onClose }: PaymentHistoryModal
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="px-3 py-1.5 text-sm border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-1.5 text-sm border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
             >
               {availableYears.map((year) => (
                 <option key={year} value={year}>{year}</option>
@@ -593,9 +593,9 @@ function PaymentHistoryModal({ studentId, isOpen, onClose }: PaymentHistoryModal
 
         {/* Summary Stats */}
         <div className="grid grid-cols-3 gap-4">
-          <div className="p-4 bg-blue-50 rounded-lg text-center border border-blue-200">
-            <p className="text-2xl font-bold text-blue-700">{formatCurrency(stats.totalAmount)}</p>
-            <p className="text-sm text-blue-600">Total Fees</p>
+          <div className="p-4 bg-gray-50 rounded-lg text-center border border-gray-200">
+            <p className="text-2xl font-bold text-gray-800">{formatCurrency(stats.totalAmount)}</p>
+            <p className="text-sm text-gray-600">Total Fees</p>
           </div>
           <div className="p-4 bg-green-50 rounded-lg text-center border border-green-200">
             <p className="text-2xl font-bold text-green-700">{formatCurrency(stats.paidAmount)}</p>

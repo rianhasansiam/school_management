@@ -125,8 +125,8 @@ export default function TeacherReportPage() {
         <StatCard
           title="Total Teachers"
           value={totalTeachers.toString()}
-          icon={<Users className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Users className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
         />
         <StatCard
           title="Active Teachers"
@@ -416,7 +416,7 @@ export default function TeacherReportPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-blue-500" />
+                    <div className="w-3 h-3 rounded-full bg-gray-800" />
                     <span className="text-sm">Male</span>
                   </div>
                   <span className="font-semibold">{maleTeachers} ({((maleTeachers / totalTeachers) * 100).toFixed(1)}%)</span>

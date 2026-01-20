@@ -411,15 +411,15 @@ export default function BooksPage() {
 
       {/* Stats Overview - Clean & Simple */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <Card className="border-l-4 border-l-blue-500 hover:shadow-md transition-shadow">
+        <Card className="border-l-4 border-l-gray-800 hover:shadow-md transition-shadow">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Total Books</p>
                 <p className="text-3xl font-bold text-gray-900">{totalBooks}</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                <BookOpen className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                <BookOpen className="w-6 h-6 text-gray-600" />
               </div>
             </div>
           </CardContent>
@@ -479,7 +479,7 @@ export default function BooksPage() {
           <span>All Books</span>
           <span className={cn(
             "ml-1 px-2 py-0.5 text-xs rounded-full",
-            activeTab === 'all-books' ? "bg-white/20 text-white" : "bg-blue-100 text-blue-700"
+            activeTab === 'all-books' ? "bg-white/20 text-white" : "bg-gray-100 text-gray-700"
           )}>
             {DEMO_BOOKS.length}
           </span>
@@ -554,7 +554,7 @@ export default function BooksPage() {
       <Card>
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2">
-            {activeTab === 'all-books' && <><BookOpen className="w-5 h-5 text-blue-500" />All Books</>}
+            {activeTab === 'all-books' && <><BookOpen className="w-5 h-5 text-gray-600" />All Books</>}
             {activeTab === 'available' && <><CheckCircle className="w-5 h-5 text-green-500" />Available Books</>}
             {activeTab === 'class-wise' && <><Layers className="w-5 h-5 text-purple-500" />Class-wise Book Distribution</>}
             {activeTab === 'subject-wise' && <><BookMarked className="w-5 h-5 text-indigo-500" />Subject-wise Book Distribution</>}
@@ -578,7 +578,7 @@ export default function BooksPage() {
                   }
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
                 />
                 {searchTerm && (
                   <button
@@ -652,8 +652,8 @@ export default function BooksPage() {
                           <TableRow key={book.id} className="hover:bg-gray-50 transition-colors">
                             <TableCell>
                               <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
-                                  <BookMarked className="w-5 h-5 text-blue-600" />
+                                <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+                                  <BookMarked className="w-5 h-5 text-gray-600" />
                                 </div>
                                 <div>
                                   <p className="font-medium text-gray-900">{book.title}</p>
@@ -726,14 +726,14 @@ export default function BooksPage() {
                     key={cls.id} 
                     className={cn(
                       "cursor-pointer hover:shadow-lg transition-all duration-200 border-2",
-                      selectedClassForDetail === cls.id ? "border-blue-500 bg-blue-50" : "hover:border-blue-300"
+                      selectedClassForDetail === cls.id ? "border-gray-800 bg-gray-50" : "hover:border-gray-400"
                     )}
                     onClick={() => setSelectedClassForDetail(selectedClassForDetail === cls.id ? null : cls.id)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center">
                             <span className="text-white font-bold text-sm">{cls.name.split(' ')[1] || cls.name.charAt(0)}</span>
                           </div>
                           <div>
@@ -743,13 +743,13 @@ export default function BooksPage() {
                         </div>
                         <Eye className={cn(
                           "w-5 h-5 transition-colors",
-                          selectedClassForDetail === cls.id ? "text-blue-500" : "text-gray-400"
+                          selectedClassForDetail === cls.id ? "text-gray-800" : "text-gray-400"
                         )} />
                       </div>
                       
                       <div className="grid grid-cols-3 gap-2 text-center">
-                        <div className="bg-blue-50 rounded-lg p-2">
-                          <p className="text-lg font-bold text-blue-600">{totalCopies}</p>
+                        <div className="bg-gray-50 rounded-lg p-2">
+                          <p className="text-lg font-bold text-gray-800">{totalCopies}</p>
                           <p className="text-xs text-gray-500">Total</p>
                         </div>
                         <div className="bg-green-50 rounded-lg p-2">
@@ -772,10 +772,10 @@ export default function BooksPage() {
                 if (!selectedData) return null;
 
                 return (
-                  <Card className="border-blue-200 bg-blue-50/50">
+                  <Card className="border-gray-200 bg-gray-50/50">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <BookMarked className="w-5 h-5 text-blue-500" />
+                        <BookMarked className="w-5 h-5 text-gray-600" />
                         {selectedData.class.name} - Book List
                       </CardTitle>
                     </CardHeader>
@@ -1207,11 +1207,11 @@ export default function BooksPage() {
 
               {/* Summary Stats */}
               <div className="grid grid-cols-3 gap-4">
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 text-center">
-                  <p className="text-3xl font-bold text-blue-700">
+                <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 text-center">
+                  <p className="text-3xl font-bold text-gray-800">
                     {studentTrackingData.reduce((sum, d) => sum + d.students.length, 0)}
                   </p>
-                  <p className="text-sm text-blue-600">Total Students</p>
+                  <p className="text-sm text-gray-600">Total Students</p>
                 </div>
                 <div className="p-4 bg-green-50 rounded-lg border border-green-200 text-center">
                   <p className="text-3xl font-bold text-green-700">
@@ -1242,7 +1242,7 @@ export default function BooksPage() {
                     <CardHeader className="bg-gray-50 py-3">
                       <CardTitle className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center">
                             <span className="text-white font-bold text-sm">
                               {classData.class.name.split(' ')[1] || classData.class.name.charAt(0)}
                             </span>
@@ -1324,7 +1324,7 @@ export default function BooksPage() {
                                     size="sm"
                                     variant="ghost"
                                     onClick={() => setSelectedStudentForBooks({ student, booksList })}
-                                    className="text-blue-600 hover:text-blue-700"
+                                    className="text-gray-600 hover:text-black"
                                   >
                                     <Eye className="w-4 h-4 mr-1" />
                                     View Books
@@ -1434,10 +1434,10 @@ export default function BooksPage() {
       >
         <div className="space-y-4">
           {selectedBook && (
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-                  <BookMarked className="w-6 h-6 text-blue-600" />
+                <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                  <BookMarked className="w-6 h-6 text-gray-600" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">{selectedBook.title}</p>

@@ -4,8 +4,8 @@ import { NavItem, UserRole } from './types';
 // APPLICATION CONSTANTS
 // ============================================
 
-export const APP_NAME = 'School Management System';
-export const APP_NAME_EN = 'School Management System';
+export const APP_NAME = 'ByteEdu';
+export const APP_NAME_EN = 'ByteEdu';
 export const APP_VERSION = '1.0.0';
 
 // ----- NAVIGATION -----

@@ -110,8 +110,8 @@ export default function FinancePage() {
         <StatCard
           title="Paid Salaries"
           value={formatCurrency(paidSalaries)}
-          icon={<Banknote className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Banknote className="w-5 h-5 md:w-6 md:h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
         />
       </div>
 

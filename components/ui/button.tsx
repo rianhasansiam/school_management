@@ -12,9 +12,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const buttonVariants = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
+  primary: 'bg-black text-white hover:bg-gray-800 focus:ring-black',
   secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-  outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-blue-500',
+  outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-black',
   ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',

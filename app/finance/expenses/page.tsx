@@ -135,8 +135,8 @@ export default function ExpensesPage() {
         <StatCard
           title="This Month"
           value={formatCurrency(thisMonthExpenses)}
-          icon={<Calendar className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Calendar className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
         />
         <StatCard
           title="Pending Approvals"
@@ -161,7 +161,7 @@ export default function ExpensesPage() {
                       placeholder="Search expenses..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
                     />
                   </div>
                 </div>

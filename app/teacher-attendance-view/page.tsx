@@ -131,8 +131,8 @@ export default function TeacherAttendanceViewPage() {
         <Card>
           <CardContent className="p-3 md:p-4">
             <div className="flex items-center gap-2 md:gap-3">
-              <div className="p-1.5 md:p-2 bg-blue-100 rounded-lg shrink-0">
-                <Users className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
+              <div className="p-1.5 md:p-2 bg-gray-100 rounded-lg shrink-0">
+                <Users className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
               </div>
               <div className="min-w-0">
                 <p className="text-lg md:text-2xl font-bold text-gray-900">{summary.total}</p>
@@ -198,7 +198,7 @@ export default function TeacherAttendanceViewPage() {
                 className={cn(
                   'block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5',
                   'text-gray-900 placeholder:text-gray-400',
-                  'focus:outline-none focus:ring-2 focus:ring-blue-500'
+                  'focus:outline-none focus:ring-2 focus:ring-black'
                 )}
               />
             </div>
@@ -208,7 +208,7 @@ export default function TeacherAttendanceViewPage() {
                 className={cn(
                   'px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-colors whitespace-nowrap',
                   filterStatus === 'all'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-black text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 )}
               >

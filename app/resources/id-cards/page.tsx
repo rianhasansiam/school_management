@@ -186,15 +186,15 @@ export default function IDCardsPage() {
 
       {/* Stats Overview */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:shadow-md transition-shadow">
+        <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200 hover:shadow-md transition-shadow">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30">
+              <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center shadow-lg shadow-gray-500/30">
                 <Users className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-xs font-medium text-blue-600 uppercase tracking-wide">Total Students</p>
-                <p className="text-2xl font-bold text-blue-700">{totalStudents}</p>
+                <p className="text-xs font-medium text-gray-600 uppercase tracking-wide">Total Students</p>
+                <p className="text-2xl font-bold text-gray-700">{totalStudents}</p>
               </div>
             </div>
           </CardContent>
@@ -248,7 +248,7 @@ export default function IDCardsPage() {
         <CardContent className="p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-medium text-gray-700">ID Card Issuance Progress</span>
-            <span className="text-sm font-bold text-blue-600">
+            <span className="text-sm font-bold text-gray-700">
               {studentsWithCards.length} / {totalStudents} Students
             </span>
           </div>
@@ -339,7 +339,7 @@ export default function IDCardsPage() {
                 }
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
               />
               {searchTerm && (
                 <button
@@ -543,7 +543,7 @@ export default function IDCardsPage() {
                     return (
                       <Card 
                         key={student.id} 
-                        className="group hover:shadow-lg hover:border-blue-300 transition-all duration-200"
+                        className="group hover:shadow-lg hover:border-gray-400 transition-all duration-200"
                       >
                         <CardContent className="p-4">
                           <div className="flex items-start justify-between mb-3">
@@ -567,7 +567,7 @@ export default function IDCardsPage() {
                           </div>
                           <Button 
                             size="sm" 
-                            className="w-full group-hover:bg-blue-600"
+                            className="w-full group-hover:bg-black"
                             onClick={() => handleIssueToStudent(student)}
                           >
                             <CreditCard className="w-4 h-4 mr-2" />
@@ -605,7 +605,7 @@ export default function IDCardsPage() {
       >
         <div className="space-y-4">
           {selectedStudentForIssue ? (
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
               <div className="flex items-center gap-3">
                 <Avatar 
                   alt={`${selectedStudentForIssue.firstName} ${selectedStudentForIssue.lastName}`}
@@ -760,10 +760,10 @@ export default function IDCardsPage() {
           return (
             <div className="space-y-4">
               {/* Card Preview */}
-              <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-xl p-5 text-white shadow-xl">
+              <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl p-5 text-white shadow-xl">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <p className="text-xs opacity-75 uppercase tracking-wider">School Management System</p>
+                    <p className="text-xs opacity-75 uppercase tracking-wider">ByteEdu</p>
                     <p className="font-bold text-lg">STUDENT ID CARD</p>
                   </div>
                   <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">

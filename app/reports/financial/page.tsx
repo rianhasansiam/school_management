@@ -150,8 +150,8 @@ export default function FinancialReportPage() {
         <StatCard
           title="Net Profit"
           value={formatCurrency(netProfit)}
-          icon={<Wallet className="w-5 h-5 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Wallet className="w-5 h-5 text-gray-800" />}
+          iconBgColor="bg-gray-100"
           change={{ value: parseFloat(profitMargin), type: netProfit > 0 ? 'increase' : 'decrease' }}
         />
         <StatCard
@@ -217,7 +217,7 @@ export default function FinancialReportPage() {
             <Card className="lg:col-span-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5 text-blue-600" />
+                  <BarChart3 className="w-5 h-5 text-gray-800" />
                   Monthly Income vs Expense Trend
                 </CardTitle>
               </CardHeader>
@@ -262,7 +262,7 @@ export default function FinancialReportPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-blue-600" />
+                  <FileText className="w-5 h-5 text-gray-800" />
                   Financial Summary
                 </CardTitle>
               </CardHeader>
@@ -277,15 +277,15 @@ export default function FinancialReportPage() {
                 </div>
                 <div className={cn(
                   "p-4 rounded-lg",
-                  netProfit >= 0 ? "bg-blue-50" : "bg-orange-50"
+                  netProfit >= 0 ? "bg-gray-50" : "bg-orange-50"
                 )}>
                   <p className={cn(
                     "text-sm font-medium",
-                    netProfit >= 0 ? "text-blue-600" : "text-orange-600"
+                    netProfit >= 0 ? "text-gray-600" : "text-orange-600"
                   )}>Net Profit/Loss</p>
                   <p className={cn(
                     "text-2xl font-bold",
-                    netProfit >= 0 ? "text-blue-700" : "text-orange-700"
+                    netProfit >= 0 ? "text-gray-800" : "text-orange-700"
                   )}>{formatCurrency(netProfit)}</p>
                 </div>
                 <div className="pt-4 border-t space-y-3">
@@ -541,7 +541,7 @@ export default function FinancialReportPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <BarChart3 className="w-5 h-5 text-blue-600" />
+                  <BarChart3 className="w-5 h-5 text-gray-800" />
                   Year-over-Year Comparison
                 </CardTitle>
               </CardHeader>
@@ -586,7 +586,7 @@ export default function FinancialReportPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-blue-600" />
+                  <FileText className="w-5 h-5 text-gray-800" />
                   Key Performance Indicators
                 </CardTitle>
               </CardHeader>
@@ -632,7 +632,7 @@ export default function FinancialReportPage() {
                           <div
                             className={cn(
                               "h-full rounded-full transition-all",
-                              kpi.color === 'blue' && 'bg-blue-500',
+                              kpi.color === 'blue' && 'bg-gray-800',
                               kpi.color === 'green' && 'bg-green-500',
                               kpi.color === 'orange' && 'bg-orange-500',
                               kpi.color === 'purple' && 'bg-purple-500'
@@ -653,7 +653,7 @@ export default function FinancialReportPage() {
           <Card className="mt-6">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <DollarSign className="w-5 h-5 text-blue-600" />
+                <DollarSign className="w-5 h-5 text-gray-800" />
                 Recent Transactions
               </CardTitle>
             </CardHeader>

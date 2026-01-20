@@ -91,13 +91,13 @@ export default function ClassesPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4 md:mb-6">
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-gray-50 border-gray-200">
           <CardContent className="p-3 md:p-4">
             <div className="flex items-center gap-2 md:gap-3">
-              <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-blue-600" />
+              <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-gray-800" />
               <div>
-                <p className="text-xs md:text-sm text-blue-600">Total Classes</p>
-                <p className="text-lg md:text-2xl font-bold text-blue-800">
+                <p className="text-xs md:text-sm text-gray-600">Total Classes</p>
+                <p className="text-lg md:text-2xl font-bold text-gray-800">
                   {DEMO_CLASSES.length}
                 </p>
               </div>
@@ -420,10 +420,10 @@ function ClassDetails({ classData, onClose }: ClassDetailsProps) {
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-blue-50 p-4 rounded-lg text-center">
-          <Users className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-          <p className="text-2xl font-bold text-blue-800">{students.length}</p>
-          <p className="text-sm text-blue-600">Students</p>
+        <div className="bg-gray-50 p-4 rounded-lg text-center">
+          <Users className="w-6 h-6 text-gray-800 mx-auto mb-2" />
+          <p className="text-2xl font-bold text-gray-800">{students.length}</p>
+          <p className="text-sm text-gray-600">Students</p>
         </div>
         <div className="bg-gray-50 p-4 rounded-lg text-center">
           <BookOpen className="w-6 h-6 text-gray-600 mx-auto mb-2" />

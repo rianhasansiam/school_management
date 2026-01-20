@@ -164,8 +164,8 @@ export default function FinancialReportsPage() {
         <StatCard
           title="Net Profit/Loss"
           value={formatCurrency(netProfit)}
-          icon={<Wallet className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Wallet className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
           change={{ value: netProfit > 0 ? 8 : -8, type: netProfit > 0 ? 'increase' : 'decrease' }}
         />
         <StatCard
@@ -357,17 +357,17 @@ export default function FinancialReportsPage() {
               </div>
               <div className={cn(
                 'p-4 rounded-lg',
-                netProfit >= 0 ? 'bg-blue-50' : 'bg-orange-50'
+                netProfit >= 0 ? 'bg-gray-50' : 'bg-orange-50'
               )}>
                 <p className={cn(
                   'text-sm mb-1',
-                  netProfit >= 0 ? 'text-blue-700' : 'text-orange-700'
+                  netProfit >= 0 ? 'text-gray-800' : 'text-orange-700'
                 )}>
                   Net {netProfit >= 0 ? 'Profit' : 'Loss'}
                 </p>
                 <p className={cn(
                   'text-2xl font-bold',
-                  netProfit >= 0 ? 'text-blue-700' : 'text-orange-700'
+                  netProfit >= 0 ? 'text-gray-800' : 'text-orange-700'
                 )}>
                   {formatCurrency(Math.abs(netProfit))}
                 </p>

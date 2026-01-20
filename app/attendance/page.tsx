@@ -165,7 +165,7 @@ export default function AttendancePage() {
                 onChange={(e) => setSelectedDate(e.target.value)}
                 className={cn(
                   'block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5',
-                  'text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                  'text-gray-900 focus:outline-none focus:ring-2 focus:ring-black'
                 )}
               />
             </div>
@@ -258,7 +258,7 @@ export default function AttendancePage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => setSelectedTeacher(teacher)}
-                              className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                              className="text-gray-600 hover:text-black hover:bg-gray-50"
                             >
                               <Eye className="w-4 h-4" />
                             </Button>
@@ -519,7 +519,7 @@ function AttendanceHistoryModal({
             <ChevronLeft className="w-4 h-4" />
           </Button>
           <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-blue-600" />
+            <Calendar className="w-5 h-5 text-gray-800" />
             <span className="text-lg font-semibold text-gray-900">{monthName}</span>
           </div>
           <Button variant="outline" size="sm" onClick={handleNextMonth}>
@@ -529,9 +529,9 @@ function AttendanceHistoryModal({
 
         {/* Monthly Stats */}
         <div className="grid grid-cols-4 gap-3">
-          <div className="p-3 bg-blue-50 rounded-lg text-center">
-            <p className="text-2xl font-bold text-blue-700">{monthStats.total}</p>
-            <p className="text-xs text-blue-600">Working Days</p>
+          <div className="p-3 bg-gray-50 rounded-lg text-center">
+            <p className="text-2xl font-bold text-gray-800">{monthStats.total}</p>
+            <p className="text-xs text-gray-600">Working Days</p>
           </div>
           <div className="p-3 bg-green-50 rounded-lg text-center">
             <p className="text-2xl font-bold text-green-700">{monthStats.present}</p>

@@ -117,8 +117,8 @@ export default function SalaryPage() {
         <StatCard
           title="Monthly Salary Budget"
           value={formatCurrency(totalSalaryBudget)}
-          icon={<Wallet className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Wallet className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
         />
         <StatCard
           title="Paid This Month"
@@ -152,7 +152,7 @@ export default function SalaryPage() {
                   placeholder="Search by teacher name or employee ID..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
                 />
               </div>
             </div>
@@ -411,7 +411,7 @@ function PaySalaryForm({ salaryId, onClose }: { salaryId: string | null; onClose
         </div>
       </div>
 
-      <div className="bg-blue-50 p-4 rounded-lg space-y-2">
+      <div className="bg-gray-50 p-4 rounded-lg space-y-2">
         <div className="flex justify-between text-sm">
           <span className="text-gray-600">Basic Salary</span>
           <span className="font-medium">{formatCurrency(salary.basicSalary)}</span>

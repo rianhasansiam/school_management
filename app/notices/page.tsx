@@ -112,15 +112,15 @@ export default function NoticesPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <Card className="border-l-4 border-l-blue-500 hover:shadow-md transition-shadow">
+        <Card className="border-l-4 border-l-gray-800 hover:shadow-md transition-shadow">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Total Notices</p>
                 <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                <Megaphone className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                <Megaphone className="w-6 h-6 text-gray-800" />
               </div>
             </div>
           </CardContent>
@@ -173,7 +173,7 @@ export default function NoticesPage() {
       <Card>
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2">
-            <Bell className="w-5 h-5 text-blue-500" />
+            <Bell className="w-5 h-5 text-gray-800" />
             Notice List
           </CardTitle>
         </CardHeader>
@@ -187,7 +187,7 @@ export default function NoticesPage() {
                 placeholder="Search by title or message..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
               />
               {searchQuery && (
                 <button
@@ -321,9 +321,9 @@ function NoticeCard({ notice, onClick, onDelete }: NoticeCardProps) {
       default:
         return {
           icon: <Info className="w-5 h-5" />,
-          color: 'text-blue-500',
-          bgColor: 'bg-blue-50',
-          borderColor: 'border-l-blue-500',
+          color: 'text-gray-600',
+          bgColor: 'bg-gray-100',
+          borderColor: 'border-l-gray-800',
           badgeVariant: 'info' as const,
         };
     }
@@ -351,7 +351,7 @@ function NoticeCard({ notice, onClick, onDelete }: NoticeCardProps) {
         'transition-all duration-200 hover:shadow-lg hover:border-gray-300',
         'border-l-4',
         priorityConfig.borderColor,
-        !notice.isRead && 'bg-blue-50/30'
+        !notice.isRead && 'bg-gray-50/30'
       )}
     >
       <div className="flex items-start gap-4">
@@ -368,11 +368,11 @@ function NoticeCard({ notice, onClick, onDelete }: NoticeCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="font-semibold text-gray-900 group-hover:text-black transition-colors">
                 {notice.title}
               </h3>
               {!notice.isRead && (
-                <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                <span className="w-2 h-2 bg-gray-800 rounded-full animate-pulse" />
               )}
             </div>
             <div className="flex items-center gap-2 shrink-0">
@@ -381,7 +381,7 @@ function NoticeCard({ notice, onClick, onDelete }: NoticeCardProps) {
                   e.stopPropagation();
                   onClick();
                 }}
-                className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-blue-600 transition-colors opacity-0 group-hover:opacity-100"
+                className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-black transition-colors opacity-0 group-hover:opacity-100"
               >
                 <Eye className="w-4 h-4" />
               </button>
@@ -479,7 +479,7 @@ function AddNoticeModal({ open, onClose, onSubmit }: AddNoticeModalProps) {
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             placeholder="Enter notice message..."
             rows={4}
-            className="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none transition-all"
+            className="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none transition-all"
             required
           />
         </div>
@@ -505,7 +505,7 @@ function AddNoticeModal({ open, onClose, onSubmit }: AddNoticeModalProps) {
           <div className="flex items-center gap-2">
             {formData.priority === 'high' && <AlertCircle className="w-4 h-4 text-red-500" />}
             {formData.priority === 'medium' && <AlertTriangle className="w-4 h-4 text-amber-500" />}
-            {formData.priority === 'low' && <Info className="w-4 h-4 text-blue-500" />}
+            {formData.priority === 'low' && <Info className="w-4 h-4 text-gray-600" />}
             <span className="text-sm font-medium text-gray-900">
               {formData.title || 'Notice Title'}
             </span>
@@ -558,7 +558,7 @@ function ViewNoticeModal({ notice, onClose, onDelete }: ViewNoticeModalProps) {
       case 'medium':
         return { icon: <AlertTriangle className="w-5 h-5" />, color: 'text-amber-500', bg: 'bg-amber-50', variant: 'warning' as const };
       default:
-        return { icon: <Info className="w-5 h-5" />, color: 'text-blue-500', bg: 'bg-blue-50', variant: 'info' as const };
+        return { icon: <Info className="w-5 h-5" />, color: 'text-gray-600', bg: 'bg-gray-100', variant: 'info' as const };
     }
   };
 

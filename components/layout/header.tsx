@@ -82,7 +82,7 @@ export function Header() {
                   'w-64 lg:w-80 pl-10 pr-4 py-2 rounded-lg',
                   'bg-gray-50 border border-gray-200',
                   'text-sm text-gray-900 placeholder-gray-400',
-                  'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+                  'focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent',
                   'transition-all duration-200'
                 )}
               />
@@ -167,7 +167,7 @@ export function Header() {
                     'w-full pl-10 pr-4 py-2 rounded-lg',
                     'bg-gray-50 border border-gray-200',
                     'text-sm text-gray-900 placeholder-gray-400',
-                    'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+                    'focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent'
                   )}
                 />
               </div>
@@ -212,7 +212,7 @@ function NotificationDropdown() {
       case 'medium':
         return <AlertTriangle className="w-4 h-4 text-amber-500" />;
       default:
-        return <Info className="w-4 h-4 text-blue-500" />;
+        return <Info className="w-4 h-4 text-gray-500" />;
     }
   };
 
@@ -223,7 +223,7 @@ function NotificationDropdown() {
       case 'medium':
         return 'border-l-amber-500';
       default:
-        return 'border-l-blue-500';
+        return 'border-l-gray-500';
     }
   };
 
@@ -246,7 +246,7 @@ function NotificationDropdown() {
           {unreadCount > 0 && (
             <button
               onClick={markAllAsRead}
-              className="text-xs text-blue-600 hover:text-blue-700 flex items-center gap-1"
+              className="text-xs text-black hover:text-gray-700 flex items-center gap-1"
             >
               <CheckCheck className="w-3 h-3" />
               Mark all read
@@ -269,7 +269,7 @@ function NotificationDropdown() {
                   'border-b border-gray-50 last:border-b-0',
                   'border-l-4',
                   getPriorityColor(notice.priority),
-                  !notice.isRead && 'bg-blue-50/50'
+                  !notice.isRead && 'bg-gray-50'
                 )}
               >
                 <div className="flex items-start gap-3">
@@ -280,7 +280,7 @@ function NotificationDropdown() {
                         {notice.title}
                       </p>
                       {!notice.isRead && (
-                        <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+                        <span className="w-2 h-2 bg-black rounded-full flex-shrink-0" />
                       )}
                     </div>
                     <p className="text-sm text-gray-500 mt-0.5 line-clamp-2">
@@ -307,7 +307,7 @@ function NotificationDropdown() {
         </div>
         {notices.length > 5 && (
           <div className="px-4 py-3 border-t border-gray-100">
-            <a href="/notices" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+            <a href="/notices" className="text-sm text-black hover:text-gray-700 font-medium">
               View all {notices.length} notifications
             </a>
           </div>

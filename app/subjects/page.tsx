@@ -154,15 +154,15 @@ export default function SubjectsPage() {
 
       {/* Stats Cards - Clean Design */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <Card className="border-l-4 border-l-blue-500 hover:shadow-md transition-shadow">
+        <Card className="border-l-4 border-l-gray-800 hover:shadow-md transition-shadow">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-500">Total Subjects</p>
                 <p className="text-3xl font-bold text-gray-900">{stats.totalSubjects}</p>
               </div>
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
-                <BookText className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                <BookText className="w-6 h-6 text-gray-600" />
               </div>
             </div>
           </CardContent>
@@ -237,7 +237,7 @@ export default function SubjectsPage() {
       <Card>
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2">
-            <BookText className="w-5 h-5 text-blue-500" />
+            <BookText className="w-5 h-5 text-gray-600" />
             Subject List
           </CardTitle>
         </CardHeader>
@@ -251,7 +251,7 @@ export default function SubjectsPage() {
                 placeholder="Search by subject name or code..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
               />
               {searchTerm && (
                 <button
@@ -321,7 +321,7 @@ export default function SubjectsPage() {
                         <TableRow key={subject.id} className="hover:bg-gray-50 transition-colors">
                           <TableCell>
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold">
+                              <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center text-white font-bold">
                                 {subject.name.charAt(0)}
                               </div>
                               <div>
@@ -375,7 +375,7 @@ export default function SubjectsPage() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setViewSubject(subject)}
-                                className="hover:bg-blue-50 hover:text-blue-600"
+                                className="hover:bg-gray-100 hover:text-gray-800"
                               >
                                 <Eye className="w-4 h-4" />
                               </Button>
@@ -422,13 +422,13 @@ export default function SubjectsPage() {
                   return (
                     <Card 
                       key={subject.id} 
-                      className="hover:shadow-lg transition-all duration-200 cursor-pointer border-2 hover:border-blue-300"
+                      className="hover:shadow-lg transition-all duration-200 cursor-pointer border-2 hover:border-gray-400"
                       onClick={() => setViewSubject(subject)}
                     >
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg">
+                            <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center text-white font-bold text-lg">
                               {subject.name.charAt(0)}
                             </div>
                             <div>
@@ -557,7 +557,7 @@ function NoticeCard({ notice, onDelete, isAdmin }: NoticeCardProps) {
       case 'medium':
         return <AlertTriangle className="w-5 h-5 text-amber-500" />;
       default:
-        return <Info className="w-5 h-5 text-blue-500" />;
+        return <Info className="w-5 h-5 text-gray-500" />;
     }
   };
 
@@ -568,7 +568,7 @@ function NoticeCard({ notice, onDelete, isAdmin }: NoticeCardProps) {
       case 'medium':
         return 'bg-amber-50 border-amber-200';
       default:
-        return 'bg-blue-50 border-blue-200';
+        return 'bg-gray-50 border-gray-200';
     }
   };
 
@@ -668,7 +668,7 @@ function NoticeForm({ onClose, onSubmit }: NoticeFormProps) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={4}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent resize-none"
           required
         />
       </div>
@@ -779,7 +779,7 @@ function SubjectDetails({ subject, onClose }: SubjectDetailsProps) {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
-        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-2xl">
+        <div className="w-16 h-16 rounded-xl bg-black flex items-center justify-center text-white font-bold text-2xl">
           {subject.name.charAt(0)}
         </div>
         <div>

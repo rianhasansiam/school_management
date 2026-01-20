@@ -29,7 +29,7 @@ export function Avatar({ src, alt, fallback, size = 'md', className, ...props }:
     <div
       className={cn(
         'relative inline-flex items-center justify-center rounded-full overflow-hidden',
-        'bg-gradient-to-br from-blue-500 to-blue-600',
+        'bg-gradient-to-br from-gray-800 to-black',
         avatarSizes[size],
         className
       )}
@@ -63,7 +63,7 @@ const badgeVariants = {
   success: 'bg-green-100 text-green-700',
   warning: 'bg-yellow-100 text-yellow-700',
   danger: 'bg-red-100 text-red-700',
-  info: 'bg-blue-100 text-blue-700',
+  info: 'bg-gray-100 text-gray-700',
 };
 
 const badgeSizes = {
@@ -105,7 +105,7 @@ export function Spinner({ size = 'md', className, ...props }: SpinnerProps) {
   return (
     <div
       className={cn(
-        'animate-spin rounded-full border-2 border-gray-300 border-t-blue-600',
+        'animate-spin rounded-full border-2 border-gray-300 border-t-black',
         spinnerSizes[size],
         className
       )}
@@ -149,7 +149,7 @@ interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const progressVariants = {
-  default: 'bg-blue-600',
+  default: 'bg-black',
   success: 'bg-green-600',
   warning: 'bg-yellow-500',
   danger: 'bg-red-600',

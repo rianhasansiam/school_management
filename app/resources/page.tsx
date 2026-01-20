@@ -57,15 +57,15 @@ export default function ResourcesPage() {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-gray-50 border-gray-200">
           <CardContent className="p-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-blue-600" />
+              <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-gray-600" />
               </div>
               <div>
                 <p className="text-xs text-gray-600">Total Books</p>
-                <p className="text-xl font-bold text-blue-600">{totalBooks}</p>
+                <p className="text-xl font-bold text-gray-600">{totalBooks}</p>
                 <p className="text-xs text-gray-500">{availableBooks} available</p>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function ResourcesPage() {
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-blue-600" />
+              <BookOpen className="w-5 h-5 text-gray-600" />
               Books Management
             </CardTitle>
           </CardHeader>
@@ -131,9 +131,9 @@ export default function ResourcesPage() {
             </p>
             
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-blue-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-4">
                 <p className="text-sm text-gray-600">Total Titles</p>
-                <p className="text-2xl font-bold text-blue-600">{DEMO_BOOKS.length}</p>
+                <p className="text-2xl font-bold text-gray-600">{DEMO_BOOKS.length}</p>
               </div>
               <div className="bg-green-50 rounded-lg p-4">
                 <p className="text-sm text-gray-600">Available</p>
@@ -243,10 +243,10 @@ export default function ResourcesPage() {
             ].map((activity, index) => (
               <div key={index} className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  activity.type === 'book' ? 'bg-blue-100' : 'bg-purple-100'
+                  activity.type === 'book' ? 'bg-gray-100' : 'bg-purple-100'
                 }`}>
                   {activity.type === 'book' ? (
-                    <BookOpen className="w-5 h-5 text-blue-600" />
+                    <BookOpen className="w-5 h-5 text-gray-600" />
                   ) : (
                     <CreditCard className="w-5 h-5 text-purple-600" />
                   )}

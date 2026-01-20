@@ -150,8 +150,8 @@ export default function FeeReportPage() {
         <StatCard
           title="Total Fees"
           value={formatCurrency(totalFees)}
-          icon={<DollarSign className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<DollarSign className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
         />
         <StatCard
           title="Collected"

@@ -133,8 +133,8 @@ export default function IncomePage() {
         <StatCard
           title="This Month"
           value={formatCurrency(thisMonthIncome)}
-          icon={<Calendar className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Calendar className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
           change={{ value: 15, type: 'increase' }}
         />
         <StatCard
@@ -160,7 +160,7 @@ export default function IncomePage() {
                       placeholder="Search income records..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
                     />
                   </div>
                 </div>

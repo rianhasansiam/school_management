@@ -89,8 +89,8 @@ export function AdminDashboard() {
         <StatCard
           title="Total Students"
           value={stats.totalStudents.toLocaleString('en-US')}
-          icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-gray-600" />}
+          iconBgColor="bg-gray-100"
           change={{ value: 12, type: 'increase' }}
         />
         <StatCard
@@ -165,7 +165,7 @@ export function AdminDashboard() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-sm md:text-base">
-              <Users className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
+              <Users className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
               Student Enrollment Trend
             </CardTitle>
           </CardHeader>
@@ -462,7 +462,7 @@ function ActivityIcon({ type }: { type: string }) {
   const iconMap: Record<string, React.ReactNode> = {
     attendance: <ClipboardCheck className="w-4 h-4 text-purple-600" />,
     payment: <Wallet className="w-4 h-4 text-green-600" />,
-    assignment: <FileText className="w-4 h-4 text-blue-600" />,
+    assignment: <FileText className="w-4 h-4 text-gray-600" />,
     student: <Users className="w-4 h-4 text-indigo-600" />,
     salary: <DollarSign className="w-4 h-4 text-orange-600" />,
   };
@@ -478,7 +478,7 @@ interface QuickActionProps {
 
 function QuickAction({ icon, label, href, color }: QuickActionProps) {
   const colors = {
-    blue: 'bg-blue-50 text-blue-600 hover:bg-blue-100',
+    blue: 'bg-gray-100 text-gray-600 hover:bg-gray-200',
     green: 'bg-green-50 text-green-600 hover:bg-green-100',
     purple: 'bg-purple-50 text-purple-600 hover:bg-purple-100',
     orange: 'bg-orange-50 text-orange-600 hover:bg-orange-100',

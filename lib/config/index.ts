@@ -4,11 +4,11 @@
 
 export const config = {
   app: {
-    name: process.env.NEXT_PUBLIC_APP_NAME || 'School Management System',
+    name: process.env.NEXT_PUBLIC_APP_NAME || 'ByteEdu',
     description: 'Comprehensive school management system for Bangladeshi schools',
     url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
     version: '1.0.0',
-    author: 'SM System Team',
+    author: 'ByteEdu Team',
   },
   
   pagination: {

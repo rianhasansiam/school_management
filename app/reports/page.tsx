@@ -186,10 +186,10 @@ function AttendanceReport() {
 
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-gray-50 border-gray-200">
           <CardContent className="p-4">
-            <div className="text-sm text-blue-600 mb-1">Total Records</div>
-            <div className="text-2xl font-bold text-blue-800">
+            <div className="text-sm text-gray-600 mb-1">Total Records</div>
+            <div className="text-2xl font-bold text-gray-800">
               {totalStats.total}
             </div>
           </CardContent>
@@ -350,7 +350,7 @@ function FinancialReport() {
           className={cn(
             'border',
             netBalance >= 0
-              ? 'bg-blue-50 border-blue-200'
+              ? 'bg-gray-50 border-gray-200'
               : 'bg-orange-50 border-orange-200'
           )}
         >
@@ -358,7 +358,7 @@ function FinancialReport() {
             <div
               className={cn(
                 'text-sm mb-1',
-                netBalance >= 0 ? 'text-blue-600' : 'text-orange-600'
+                netBalance >= 0 ? 'text-gray-600' : 'text-orange-600'
               )}
             >
               Net Balance
@@ -366,7 +366,7 @@ function FinancialReport() {
             <div
               className={cn(
                 'text-2xl font-bold',
-                netBalance >= 0 ? 'text-blue-800' : 'text-orange-800'
+                netBalance >= 0 ? 'text-gray-800' : 'text-orange-800'
               )}
             >
               {formatCurrency(netBalance)}
@@ -539,10 +539,10 @@ function StudentReport() {
     <div className="space-y-6">
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-gray-50 border-gray-200">
           <CardContent className="p-4">
-            <div className="text-sm text-blue-600 mb-1">Total Students</div>
-            <div className="text-2xl font-bold text-blue-800">
+            <div className="text-sm text-gray-600 mb-1">Total Students</div>
+            <div className="text-2xl font-bold text-gray-800">
               {totalStudents}
             </div>
           </CardContent>

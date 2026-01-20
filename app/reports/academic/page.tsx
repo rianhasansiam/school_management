@@ -135,8 +135,8 @@ export default function AcademicReportPage() {
         <StatCard
           title="Total Classes"
           value={totalClasses.toString()}
-          icon={<BookOpen className="w-6 h-6 text-blue-600" />}
-          iconBgColor="bg-blue-100"
+          icon={<BookOpen className="w-6 h-6 text-gray-800" />}
+          iconBgColor="bg-gray-100"
         />
         <StatCard
           title="Total Subjects"

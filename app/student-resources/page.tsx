@@ -200,8 +200,8 @@ export default function StudentResourcesPage() {
         <Card>
           <CardContent className="p-3 md:p-4">
             <div className="flex items-center gap-2 md:gap-3">
-              <div className="p-1.5 md:p-2 bg-blue-100 rounded-lg shrink-0">
-                <Users className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
+              <div className="p-1.5 md:p-2 bg-gray-100 rounded-lg shrink-0">
+                <Users className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
               </div>
               <div className="min-w-0">
                 <p className="text-lg md:text-2xl font-bold text-gray-900">{stats.totalStudents}</p>
@@ -263,7 +263,7 @@ export default function StudentResourcesPage() {
             className={cn(
               'flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
               activeTab === tab.key
-                ? 'border-blue-600 text-blue-600'
+                ? 'border-black text-black'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
             )}
           >
@@ -286,7 +286,7 @@ export default function StudentResourcesPage() {
               className={cn(
                 'block w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-2.5',
                 'text-gray-900 placeholder:text-gray-400',
-                'focus:outline-none focus:ring-2 focus:ring-blue-500'
+                'focus:outline-none focus:ring-2 focus:ring-black'
               )}
             />
           </div>
@@ -399,12 +399,12 @@ export default function StudentResourcesPage() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-blue-50 border-blue-200">
+            <Card className="bg-gray-50 border-gray-200">
               <CardContent className="p-4 flex items-center gap-3">
-                <BookOpen className="w-8 h-8 text-blue-600" />
+                <BookOpen className="w-8 h-8 text-gray-600" />
                 <div>
-                  <p className="text-2xl font-bold text-blue-700">{stats.totalBooksIssued}</p>
-                  <p className="text-sm text-blue-600">Total Books Issued</p>
+                  <p className="text-2xl font-bold text-gray-700">{stats.totalBooksIssued}</p>
+                  <p className="text-sm text-gray-600">Total Books Issued</p>
                 </div>
               </CardContent>
             </Card>
@@ -456,7 +456,7 @@ export default function StudentResourcesPage() {
                                   const book = getBookById(issuance.bookId);
                                   return (
                                     <div key={issuance.id} className="flex items-center gap-2">
-                                      <BookMarked className="w-3 h-3 text-blue-500" />
+                                      <BookMarked className="w-3 h-3 text-gray-600" />
                                       <span className="text-sm">{book?.title || 'Unknown Book'}</span>
                                     </div>
                                   );

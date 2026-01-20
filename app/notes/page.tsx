@@ -164,7 +164,7 @@ function getFileIcon(type: FileType) {
       return <FileText className="w-6 h-6 text-red-500" />;
     case 'doc':
     case 'docx':
-      return <FileText className="w-6 h-6 text-blue-500" />;
+      return <FileText className="w-6 h-6 text-gray-600" />;
     case 'ppt':
     case 'pptx':
       return <Presentation className="w-6 h-6 text-orange-500" />;
@@ -181,8 +181,8 @@ function getFileIcon(type: FileType) {
 function getFileTypeBadge(type: FileType) {
   const colors: Record<FileType, string> = {
     pdf: 'bg-red-100 text-red-700',
-    doc: 'bg-blue-100 text-blue-700',
-    docx: 'bg-blue-100 text-blue-700',
+    doc: 'bg-gray-100 text-gray-700',
+    docx: 'bg-gray-100 text-gray-700',
     ppt: 'bg-orange-100 text-orange-700',
     pptx: 'bg-orange-100 text-orange-700',
     image: 'bg-green-100 text-green-700',
@@ -267,15 +267,15 @@ export default function NotesPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+        <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200">
           <CardContent className="p-3 md:p-4">
             <div className="flex items-center gap-2 md:gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-500 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-black flex items-center justify-center shrink-0">
                 <HardDrive className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs md:text-sm text-blue-600 truncate">Total Files</p>
-                <p className="text-lg md:text-2xl font-bold text-blue-800">{DEMO_FILES.length}</p>
+                <p className="text-xs md:text-sm text-gray-600 truncate">Total Files</p>
+                <p className="text-lg md:text-2xl font-bold text-gray-800">{DEMO_FILES.length}</p>
               </div>
             </div>
           </CardContent>
@@ -361,7 +361,7 @@ export default function NotesPage() {
                   placeholder="Search files..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black text-gray-900"
                 />
               </div>
 
@@ -369,7 +369,7 @@ export default function NotesPage() {
               <select
                 value={classFilter}
                 onChange={(e) => setClassFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black text-gray-700"
               >
                 <option value="">All Classes</option>
                 {CLASS_OPTIONS.map((opt) => (
@@ -383,7 +383,7 @@ export default function NotesPage() {
               <select
                 value={subjectFilter}
                 onChange={(e) => setSubjectFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black text-gray-700"
               >
                 <option value="">All Subjects</option>
                 {SUBJECT_OPTIONS.map((opt) => (
@@ -397,7 +397,7 @@ export default function NotesPage() {
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
+                className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black text-gray-700"
               >
                 <option value="">All Types</option>
                 <option value="pdf">PDF</option>
@@ -440,11 +440,11 @@ export default function NotesPage() {
                 return (
                   <div
                     key={file.id}
-                    className="group relative bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer"
+                    className="group relative bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg hover:border-gray-400 transition-all cursor-pointer"
                     onClick={() => setPreviewFile(file)}
                   >
                     {/* File Icon */}
-                    <div className="w-full aspect-square bg-gray-50 rounded-lg flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                    <div className="w-full aspect-square bg-gray-50 rounded-lg flex items-center justify-center mb-3 group-hover:bg-gray-100 transition-colors">
                       <div className="transform group-hover:scale-110 transition-transform">
                         {React.cloneElement(getFileIcon(file.type), {
                           className: 'w-12 h-12',
@@ -470,7 +470,7 @@ export default function NotesPage() {
                     {/* Class Tag */}
                     {classInfo && (
                       <div className="mt-2">
-                        <span className="px-2 py-0.5 bg-blue-50 text-blue-600 text-xs rounded-full truncate">
+                        <span className="px-2 py-0.5 bg-gray-50 text-gray-600 text-xs rounded-full truncate">
                           {classInfo.name}
                         </span>
                       </div>
@@ -483,7 +483,7 @@ export default function NotesPage() {
                           e.stopPropagation();
                           openFile(file);
                         }}
-                        className="p-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                        className="p-1.5 bg-black text-white rounded-lg hover:bg-gray-700 transition-colors"
                         title="Open for Projector"
                       >
                         <ExternalLink className="w-4 h-4" />
@@ -512,11 +512,11 @@ export default function NotesPage() {
                 return (
                   <div
                     key={file.id}
-                    className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group"
+                    className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-lg hover:shadow-md hover:border-gray-400 transition-all cursor-pointer group"
                     onClick={() => setPreviewFile(file)}
                   >
                     {/* File Icon */}
-                    <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                    <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center group-hover:bg-gray-100 transition-colors">
                       {getFileIcon(file.type)}
                     </div>
 
@@ -668,8 +668,8 @@ function UploadForm({ onClose }: UploadFormProps) {
         className={cn(
           'border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer',
           dragActive
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+            ? 'border-gray-800 bg-gray-50'
+            : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
         )}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -685,7 +685,7 @@ function UploadForm({ onClose }: UploadFormProps) {
           onChange={handleFileSelect}
           className="hidden"
         />
-        <Upload className={cn('w-12 h-12 mx-auto mb-4', dragActive ? 'text-blue-500' : 'text-gray-400')} />
+        <Upload className={cn('w-12 h-12 mx-auto mb-4', dragActive ? 'text-gray-800' : 'text-gray-400')} />
         <p className="text-lg font-medium text-gray-700 mb-1">
           {dragActive ? 'Drop files here' : 'Drag & drop files here'}
         </p>
@@ -734,7 +734,7 @@ function UploadForm({ onClose }: UploadFormProps) {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Class (Optional)
           </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+          <select className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black text-gray-700">
             <option value="">No specific class</option>
             {CLASS_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -747,7 +747,7 @@ function UploadForm({ onClose }: UploadFormProps) {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Subject (Optional)
           </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+          <select className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-black text-gray-700">
             <option value="">No specific subject</option>
             {SUBJECT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
