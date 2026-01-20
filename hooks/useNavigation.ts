@@ -145,12 +145,7 @@ export function useNavigation(): NavItem[] {
           icon: 'FileSpreadsheet',
           roles: [UserRole.ADMIN],
         },
-        {
-          title: 'Activity Log',
-          href: '/reports/audit',
-          icon: 'History',
-          roles: [UserRole.ADMIN],
-        },
+        
       ],
     },
   ];

@@ -277,9 +277,9 @@ export default function IncomePage() {
             <CardContent>
               <div className="space-y-4">
                 {Object.entries(incomeByCategory).map(([category, amount]) => (
-                  <div key={category} className="flex items-center justify-between">
+                  <div key={category} className="flex items-center text-black justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                      <div className="w-8 h-8 rounded-full  bg-green-100 flex items-center justify-center text-green-600">
                         {INCOME_ICONS[category] || <DollarSign className="w-4 h-4" />}
                       </div>
                       <span className="text-sm font-medium capitalize">{category}</span>

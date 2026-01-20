@@ -166,8 +166,8 @@ export default function FinancialReportPage() {
       {/* Filters */}
       <Card className="mb-6">
         <CardContent className="p-4">
-          <div className="flex flex-wrap gap-4 items-center">
-            <div className="flex items-center gap-2">
+          <div className="flex  gap-4 items-center">
+            <div className="flex  items-center gap-2">
               <Calendar className="w-4 h-4 text-gray-500" />
               <span className="text-sm font-medium text-gray-700">Period:</span>
             </div>
@@ -193,8 +193,8 @@ export default function FinancialReportPage() {
                 { label: '2024', value: '2024' },
               ]}
             />
-            <Button variant="outline" size="sm" className="ml-auto">
-              <BarChart3 className="w-4 h-4 mr-2" />
+            <Button variant="outline" size="md" className="ml-auto">
+              <BarChart3 className="w-6 h-6 mr-2" />
               Generate Report
             </Button>
           </div>
@@ -368,7 +368,7 @@ export default function FinancialReportPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-4 text-black">
                   <div className="relative w-48 h-48 mx-auto">
                     <svg className="w-full h-full transform -rotate-90">
                       {Object.entries(incomeByCategory).reduce((acc, [category, amount], index, arr) => {
@@ -482,7 +482,7 @@ export default function FinancialReportPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-4 text-black">
                   <div className="relative w-48 h-48 mx-auto">
                     <svg className="w-full h-full transform -rotate-90">
                       {Object.entries(expenseByCategory).reduce((acc, [category, amount], index, arr) => {
@@ -540,7 +540,7 @@ export default function FinancialReportPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 ">
                   <BarChart3 className="w-5 h-5 text-gray-800" />
                   Year-over-Year Comparison
                 </CardTitle>
@@ -566,7 +566,7 @@ export default function FinancialReportPage() {
                   ].map((item) => {
                     const change = item.prev > 0 ? ((item.curr - item.prev) / item.prev) * 100 : 0;
                     return (
-                      <div key={item.label} className="grid grid-cols-3 gap-4 items-center py-3 border-b">
+                      <div key={item.label} className="grid grid-cols-3 gap-4 items-center py-3 border-b text-black">
                         <p className="text-sm text-gray-600">{item.label}</p>
                         <p className="text-sm font-medium text-center">{formatCurrency(item.prev)}</p>
                         <div className="text-center">

@@ -388,23 +388,23 @@ export default function AttendanceReportPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-green-500" />
-                    <span className="text-sm">Present</span>
+                    <span className="text-sm text-black">Present</span>
                   </div>
-                  <span className="font-semibold">{((totalPresent / totalRecords) * 100).toFixed(1)}%</span>
+                  <span className="font-semibold text-black">{((totalPresent / totalRecords) * 100).toFixed(1)}%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <span className="text-sm">Absent</span>
+                    <span className="text-sm text-black">Absent</span>
                   </div>
-                  <span className="font-semibold">{((totalAbsent / totalRecords) * 100).toFixed(1)}%</span>
+                  <span className="font-semibold text-black">{((totalAbsent / totalRecords) * 100).toFixed(1)}%</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <span className="text-sm">Late</span>
+                    <span className="text-sm text-black ">Late</span>
                   </div>
-                  <span className="font-semibold">{((totalLate / totalRecords) * 100).toFixed(1)}%</span>
+                  <span className="font-semibold text-black">{((totalLate / totalRecords) * 100).toFixed(1)}%</span>
                 </div>
               </div>
             </CardContent>
@@ -419,7 +419,7 @@ export default function AttendanceReportPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
+              <div className="space-y-3 text-black">
                 {(reportType === 'student' ? studentAttendanceData : teacherAttendanceData)
                   .filter((item) => item.percentage < 85)
                   .slice(0, 5)
@@ -447,12 +447,12 @@ export default function AttendanceReportPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-base flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4" />
+                  <BarChart3 className="w-4 h-4 " />
                   Class-wise Average
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-3 text-black">
                   {DEMO_CLASSES.slice(0, 5).map((cls) => {
                     const classStudents = studentAttendanceData.filter((s) => s.classId === cls.id);
                     const avgAttendance =

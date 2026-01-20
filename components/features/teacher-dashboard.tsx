@@ -505,7 +505,7 @@ export function TeacherDashboard() {
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-gray-500">Basic</span>
-                        <span className="font-medium">{formatCurrency(lastSalary.basicSalary)}</span>
+                        <span className="font-medium text-black">{formatCurrency(lastSalary.basicSalary)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-500">Allowances</span>
@@ -516,7 +516,7 @@ export function TeacherDashboard() {
                         <span className="font-medium text-red-600">-{formatCurrency(lastSalary.deductions)}</span>
                       </div>
                       <div className="flex justify-between pt-2 border-t">
-                        <span className="font-medium">Net Salary</span>
+                        <span className="font-medium text-black">Net Salary</span>
                         <span className="font-bold text-green-700">{formatCurrency(lastSalary.netSalary)}</span>
                       </div>
                       <div className="flex items-center gap-2 pt-2">
@@ -581,7 +581,7 @@ export function TeacherDashboard() {
             </CardHeader>
             <CardContent>
               {mySubjects.length > 0 ? (
-                <div className="space-y-2">
+                <div className="space-y-2 text-black">
                   {mySubjects.map((subject) => {
                     const classInfo = DEMO_CLASSES.find(c => c.id === subject.classId);
                     return (

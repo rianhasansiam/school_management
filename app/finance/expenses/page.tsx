@@ -278,7 +278,7 @@ export default function ExpensesPage() {
             <CardContent>
               <div className="space-y-4">
                 {Object.entries(expensesByCategory).map(([category, amount]) => (
-                  <div key={category} className="flex items-center justify-between">
+                  <div key={category} className="flex items-center text-black justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                         {EXPENSE_ICONS[category] || <Receipt className="w-4 h-4" />}
