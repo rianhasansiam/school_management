@@ -196,58 +196,58 @@ export default function StudentResourcesPage() {
       />
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Users className="w-5 h-5 text-blue-600" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="p-1.5 md:p-2 bg-blue-100 rounded-lg shrink-0">
+                <Users className="w-4 h-4 md:w-5 md:h-5 text-blue-600" />
               </div>
-              <div>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalStudents}</p>
-                <p className="text-sm text-gray-500">Total Students</p>
+              <div className="min-w-0">
+                <p className="text-lg md:text-2xl font-bold text-gray-900">{stats.totalStudents}</p>
+                <p className="text-xs md:text-sm text-gray-500 truncate">Total Students</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <BookMarked className="w-5 h-5 text-green-600" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="p-1.5 md:p-2 bg-green-100 rounded-lg shrink-0">
+                <BookMarked className="w-4 h-4 md:w-5 md:h-5 text-green-600" />
               </div>
-              <div>
-                <p className="text-2xl font-bold text-green-600">{stats.studentsWithBooks}</p>
-                <p className="text-sm text-gray-500">With Books</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <UserCheck className="w-5 h-5 text-purple-600" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-purple-600">{stats.studentsWithIDCards}</p>
-                <p className="text-sm text-gray-500">With ID Cards</p>
+              <div className="min-w-0">
+                <p className="text-lg md:text-2xl font-bold text-green-600">{stats.studentsWithBooks}</p>
+                <p className="text-xs md:text-sm text-gray-500 truncate">With Books</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-orange-100 rounded-lg">
-                <BookOpen className="w-5 h-5 text-orange-600" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="p-1.5 md:p-2 bg-purple-100 rounded-lg shrink-0">
+                <UserCheck className="w-4 h-4 md:w-5 md:h-5 text-purple-600" />
               </div>
-              <div>
-                <p className="text-2xl font-bold text-orange-600">{stats.totalBooksIssued}</p>
-                <p className="text-sm text-gray-500">Books Issued</p>
+              <div className="min-w-0">
+                <p className="text-lg md:text-2xl font-bold text-purple-600">{stats.studentsWithIDCards}</p>
+                <p className="text-xs md:text-sm text-gray-500 truncate">With ID Cards</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="p-1.5 md:p-2 bg-orange-100 rounded-lg shrink-0">
+                <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-orange-600" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-lg md:text-2xl font-bold text-orange-600">{stats.totalBooksIssued}</p>
+                <p className="text-xs md:text-sm text-gray-500 truncate">Books Issued</p>
               </div>
             </div>
           </CardContent>
@@ -255,13 +255,13 @@ export default function StudentResourcesPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-6 border-b border-gray-200">
+      <div className="flex gap-1 sm:gap-2 mb-6 border-b border-gray-200 overflow-x-auto hide-scrollbar-mobile">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
             className={cn(
-              'flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 -mb-px transition-colors',
+              'flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
               activeTab === tab.key
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'

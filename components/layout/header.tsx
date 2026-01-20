@@ -35,7 +35,8 @@ export function Header() {
 
   const handleLogout = () => {
     logout();
-    router.push('/login');
+    // Use window.location for a clean redirect to avoid auth check interference
+    window.location.href = '/';
   };
 
   const handleSearch = (e: React.FormEvent) => {

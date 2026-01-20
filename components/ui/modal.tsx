@@ -20,10 +20,10 @@ interface ModalProps {
 }
 
 const modalSizes = {
-  sm: 'max-w-md',
-  md: 'max-w-lg',
-  lg: 'max-w-2xl',
-  xl: 'max-w-4xl',
+  sm: 'max-w-[calc(100vw-2rem)] sm:max-w-md',
+  md: 'max-w-[calc(100vw-2rem)] sm:max-w-lg',
+  lg: 'max-w-[calc(100vw-2rem)] sm:max-w-2xl',
+  xl: 'max-w-[calc(100vw-2rem)] sm:max-w-4xl',
   full: 'max-w-[95vw]',
 };
 
@@ -68,7 +68,7 @@ export function Modal({
       {/* Modal */}
       <div
         className={cn(
-          'relative w-full mx-4 bg-white rounded-xl shadow-xl',
+          'relative w-full mx-2 sm:mx-4 bg-white rounded-xl shadow-xl max-h-[90vh] overflow-hidden flex flex-col',
           'animate-in fade-in-0 zoom-in-95 duration-200',
           modalSizes[size],
           className
@@ -76,16 +76,16 @@ export function Modal({
       >
         {/* Header */}
         {(title || description) && (
-          <div className="flex items-start justify-between p-6 border-b border-gray-100">
-            <div>
-              {title && <h2 className="text-lg font-semibold text-gray-900">{title}</h2>}
-              {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+          <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-100 shrink-0">
+            <div className="pr-4">
+              {title && <h2 className="text-base sm:text-lg font-semibold text-gray-900">{title}</h2>}
+              {description && <p className="mt-1 text-xs sm:text-sm text-gray-500">{description}</p>}
             </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600"
+              className="text-gray-400 hover:text-gray-600 shrink-0"
             >
               <X className="h-5 w-5" />
             </Button>
@@ -93,7 +93,7 @@ export function Modal({
         )}
 
         {/* Content */}
-        <div className="p-6">{children}</div>
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1">{children}</div>
       </div>
     </div>
   );
@@ -193,30 +193,30 @@ export function Sheet({
       {/* Sheet */}
       <div
         className={cn(
-          'absolute top-0 h-full w-full max-w-md bg-white shadow-xl',
+          'absolute top-0 h-full w-full sm:max-w-md bg-white shadow-xl',
           'animate-in duration-300',
           side === 'right' ? 'right-0 slide-in-from-right' : 'left-0 slide-in-from-left',
           className
         )}
       >
         {/* Header */}
-        <div className="flex items-start justify-between p-6 border-b border-gray-100">
-          <div>
-            {title && <h2 className="text-lg font-semibold text-gray-900">{title}</h2>}
-            {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+        <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-100">
+          <div className="pr-4">
+            {title && <h2 className="text-base sm:text-lg font-semibold text-gray-900">{title}</h2>}
+            {description && <p className="mt-1 text-xs sm:text-sm text-gray-500">{description}</p>}
           </div>
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600"
+            className="text-gray-400 hover:text-gray-600 shrink-0"
           >
             <X className="h-5 w-5" />
           </Button>
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto h-[calc(100%-88px)]">{children}</div>
+        <div className="p-4 sm:p-6 overflow-y-auto h-[calc(100%-72px)] sm:h-[calc(100%-88px)]">{children}</div>
       </div>
     </div>
   );

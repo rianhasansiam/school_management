@@ -152,19 +152,20 @@ export function Pagination({
   const endItem = totalItems && itemsPerPage ? Math.min(currentPage * itemsPerPage, totalItems) : null;
 
   return (
-    <div className={cn('flex items-center justify-between', className)}>
-      <p className="text-sm text-gray-600">
+    <div className={cn('flex flex-col sm:flex-row items-center justify-between gap-3', className)}>
+      <p className="text-xs sm:text-sm text-gray-600 order-2 sm:order-1">
         {totalItems && startItem && endItem 
           ? `Showing ${startItem}-${endItem} of ${totalItems}`
           : `Page ${currentPage} of ${totalPages}`
         }
       </p>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 order-1 sm:order-2">
         <Button
           variant="outline"
           size="icon"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
+          className="h-8 w-8 sm:h-9 sm:w-9"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
@@ -172,12 +173,13 @@ export function Pagination({
         {pages.map((page, index) => (
           <React.Fragment key={index}>
             {page === '...' ? (
-              <span className="px-3 py-2 text-gray-400">...</span>
+              <span className="px-2 sm:px-3 py-2 text-gray-400 text-sm">...</span>
             ) : (
               <Button
                 variant={currentPage === page ? 'primary' : 'ghost'}
                 size="sm"
                 onClick={() => onPageChange(page as number)}
+                className="h-8 w-8 sm:h-9 sm:w-auto sm:px-3 text-xs sm:text-sm"
               >
                 {page}
               </Button>
@@ -190,6 +192,7 @@ export function Pagination({
           size="icon"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
+          className="h-8 w-8 sm:h-9 sm:w-9"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>

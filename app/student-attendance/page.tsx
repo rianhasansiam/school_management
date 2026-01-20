@@ -357,30 +357,30 @@ export default function StudentAttendancePage() {
       {hasClasses && (
         <>
           {/* Tabs */}
-          <div className="flex gap-2 mb-6 border-b border-gray-200">
+          <div className="flex gap-1 sm:gap-2 mb-6 border-b border-gray-200 overflow-x-auto hide-scrollbar-mobile">
             <button
               onClick={() => setActiveTab('mark')}
               className={cn(
-                'flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 -mb-px transition-colors',
+                'flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
                 activeTab === 'mark'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               )}
             >
               <ClipboardCheck className="w-4 h-4" />
-              Mark Attendance
+              <span className="hidden xs:inline">Mark</span> Attendance
             </button>
             <button
               onClick={() => setActiveTab('history')}
               className={cn(
-                'flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 -mb-px transition-colors',
+                'flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
                 activeTab === 'history'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               )}
             >
               <History className="w-4 h-4" />
-              Attendance History
+              <span className="hidden xs:inline">Attendance</span> History
             </button>
           </div>
 
@@ -437,14 +437,14 @@ export default function StudentAttendancePage() {
               </Card>
 
               {/* Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
                 <Card className="bg-blue-50 border-blue-200">
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-3">
-                      <Users className="w-8 h-8 text-blue-600" />
-                      <div>
-                        <p className="text-sm text-blue-600">Total Students</p>
-                        <p className="text-2xl font-bold text-blue-800">
+                  <CardContent className="p-3 md:p-4">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <Users className="w-6 h-6 md:w-8 md:h-8 text-blue-600 shrink-0" />
+                      <div className="min-w-0">
+                        <p className="text-xs md:text-sm text-blue-600 truncate">Total Students</p>
+                        <p className="text-lg md:text-2xl font-bold text-blue-800">
                           {classStudents.length}
                         </p>
                       </div>
@@ -452,32 +452,32 @@ export default function StudentAttendancePage() {
                   </CardContent>
                 </Card>
                 <Card className="bg-green-50 border-green-200">
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-8 h-8 text-green-600" />
-                      <div>
-                        <p className="text-sm text-green-600">Present</p>
-                        <p className="text-2xl font-bold text-green-800">{presentCount}</p>
+                  <CardContent className="p-3 md:p-4">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <CheckCircle className="w-6 h-6 md:w-8 md:h-8 text-green-600 shrink-0" />
+                      <div className="min-w-0">
+                        <p className="text-xs md:text-sm text-green-600">Present</p>
+                        <p className="text-lg md:text-2xl font-bold text-green-800">{presentCount}</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
                 <Card className="bg-red-50 border-red-200">
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-3">
-                      <XCircle className="w-8 h-8 text-red-600" />
-                      <div>
-                        <p className="text-sm text-red-600">Absent</p>
-                        <p className="text-2xl font-bold text-red-800">{absentCount}</p>
+                  <CardContent className="p-3 md:p-4">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <XCircle className="w-6 h-6 md:w-8 md:h-8 text-red-600 shrink-0" />
+                      <div className="min-w-0">
+                        <p className="text-xs md:text-sm text-red-600">Absent</p>
+                        <p className="text-lg md:text-2xl font-bold text-red-800">{absentCount}</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
                 <Card className="bg-purple-50 border-purple-200">
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-3">
-                      <Calendar className="w-8 h-8 text-purple-600" />
-                      <div>
+                  <CardContent className="p-3 md:p-4">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <Calendar className="w-6 h-6 md:w-8 md:h-8 text-purple-600 shrink-0" />
+                      <div className="min-w-0">
                         <p className="text-sm text-purple-600">Date</p>
                         <p className="text-lg font-bold text-purple-800">
                           {formatDate(selectedDate)}

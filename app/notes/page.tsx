@@ -266,55 +266,55 @@ export default function NotesPage() {
       />
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
         <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center">
-                <HardDrive className="w-6 h-6 text-white" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-500 flex items-center justify-center shrink-0">
+                <HardDrive className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <div>
-                <p className="text-sm text-blue-600">Total Files</p>
-                <p className="text-2xl font-bold text-blue-800">{DEMO_FILES.length}</p>
+              <div className="min-w-0">
+                <p className="text-xs md:text-sm text-blue-600 truncate">Total Files</p>
+                <p className="text-lg md:text-2xl font-bold text-blue-800">{DEMO_FILES.length}</p>
               </div>
             </div>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center">
-                <FolderOpen className="w-6 h-6 text-white" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-500 flex items-center justify-center shrink-0">
+                <FolderOpen className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <div>
-                <p className="text-sm text-green-600">Storage Used</p>
-                <p className="text-2xl font-bold text-green-800">{totalSize.toFixed(1)} MB</p>
+              <div className="min-w-0">
+                <p className="text-xs md:text-sm text-green-600 truncate">Storage Used</p>
+                <p className="text-lg md:text-2xl font-bold text-green-800">{totalSize.toFixed(1)} MB</p>
               </div>
             </div>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-br from-red-50 to-red-100 border-red-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-red-500 flex items-center justify-center">
-                <FileText className="w-6 h-6 text-white" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-red-500 flex items-center justify-center shrink-0">
+                <FileText className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <div>
-                <p className="text-sm text-red-600">PDF Files</p>
-                <p className="text-2xl font-bold text-red-800">{fileTypeCounts['pdf'] || 0}</p>
+              <div className="min-w-0">
+                <p className="text-xs md:text-sm text-red-600 truncate">PDF Files</p>
+                <p className="text-lg md:text-2xl font-bold text-red-800">{fileTypeCounts['pdf'] || 0}</p>
               </div>
             </div>
           </CardContent>
         </Card>
         <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center">
-                <Presentation className="w-6 h-6 text-white" />
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-orange-500 flex items-center justify-center shrink-0">
+                <Presentation className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <div>
-                <p className="text-sm text-orange-600">Presentations</p>
-                <p className="text-2xl font-bold text-orange-800">
+              <div className="min-w-0">
+                <p className="text-xs md:text-sm text-orange-600 truncate">Presentations</p>
+                <p className="text-lg md:text-2xl font-bold text-orange-800">
                   {(fileTypeCounts['ppt'] || 0) + (fileTypeCounts['pptx'] || 0)}
                 </p>
               </div>
