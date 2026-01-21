@@ -40,6 +40,7 @@ import {
   UserCheck,
   HardDrive,
   Package,
+  Settings,
 } from 'lucide-react';
 
 // Icon mapping
@@ -69,6 +70,7 @@ const iconMap: Record<string, LucideIcon> = {
   UserCheck,
   HardDrive,
   Package,
+  Settings,
 };
 
 // ============================================

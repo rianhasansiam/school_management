@@ -60,6 +60,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
     roles: [UserRole.TEACHER],
   },
   {
+    title: 'Inventory',
+    href: '/inventory',
+    icon: 'Package',
+    roles: [UserRole.ADMIN],
+  },
+  {
     title: 'Financial Management',
     href: '/finance',
     icon: 'Wallet',

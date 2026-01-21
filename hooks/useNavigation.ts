@@ -14,6 +14,7 @@ export function useNavigation(): NavItem[] {
       icon: 'LayoutDashboard',
       roles: [UserRole.ADMIN, UserRole.TEACHER],
     },
+    
     {
       title: 'Students',
       href: '/students',
@@ -62,6 +63,12 @@ export function useNavigation(): NavItem[] {
       href: '/student-resources',
       icon: 'Package',
       roles: [UserRole.TEACHER],
+    },
+    {
+      title: 'Inventory',
+      href: '/inventory',
+      icon: 'Package',
+      roles: [UserRole.ADMIN],
     },
     {
       title: 'Notices',
